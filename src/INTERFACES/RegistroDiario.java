@@ -9,9 +9,8 @@ import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class RegistroDiario extends javax.swing.JFrame {
     //
@@ -491,7 +490,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             } else {
             }
 
-            tcr = new DefaultTableCellHeaderRenderer();
+            tcr = new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
             Tabla.setBackground(Color.white);
