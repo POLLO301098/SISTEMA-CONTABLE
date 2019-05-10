@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class RegistroDiario extends javax.swing.JFrame {
-
+    //
     cargarFuente fuente = new cargarFuente();
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableCellRenderer tcr;
