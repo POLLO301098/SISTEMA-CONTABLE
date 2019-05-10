@@ -2,45 +2,50 @@ package INTERFACES;
 
 import FUENTES.cargarFuente;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.Calendar;
-import javax.swing.GroupLayout;
-import javax.swing.JTable;
+import java.util.GregorianCalendar;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-
 public class RegistroDiario extends javax.swing.JFrame {
-    
+
     cargarFuente fuente = new cargarFuente();
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableCellRenderer tcr;
-    Calendar fecha = Calendar.getInstance();
-    
+    Calendar fecha = new GregorianCalendar();
+
     public RegistroDiario() {
         initComponents();
-        
+
         setExtendedState(MAXIMIZED_BOTH);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/IMAGENES/cartera.png")));
         setTitle("Registro Diario");
-        
-        String[] titulos = {"Fecha","Cuenta","Concepto","Cargo","Abono"};
+
+        String[] titulos = {"Fecha", "Cuenta", "Concepto", "Cargo", "Abono"};
         modelo.setColumnIdentifiers(titulos);
         Tabla.setModel(modelo);
         Tabla.getTableHeader().setPreferredSize(new java.awt.Dimension(200, 60));
-        Tabla.getTableHeader().setBackground(new Color(232,63,96));
+        Tabla.getTableHeader().setBackground(new Color(232, 63, 96));
         Tabla.getTableHeader().setForeground(Color.white);
         Tabla.getTableHeader().setFont(fuente.setFont(fuente.negrita, 0, 20));
-        
+
         PanelAccionesPadre.remove(PanelAcciones);
         PanelAccionesPadre.setLayout(new GridLayout());
         PanelAccionesPadre.add(logo);
-}
-    
+
+        PanelAcciones.remove(PanelFecha);
+        cbxFecha.setLocation(150, 610);
+        btnGuardar.setLocation(200, 655);
+        PanelAcciones.setPreferredSize(new Dimension(600, 770));
+        PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 780));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,6 +88,11 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelMonto = new javax.swing.JPanel();
         txtMonto = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        cbxFecha = new javax.swing.JCheckBox();
+        PanelFecha = new javax.swing.JPanel();
+        cbDia = new javax.swing.JComboBox<>();
+        cbMes = new javax.swing.JComboBox<>();
+        cbAno = new javax.swing.JComboBox<>();
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/cartera.png"))); // NOI18N
@@ -247,11 +257,12 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         Panel.add(PanelTitulo, java.awt.BorderLayout.NORTH);
 
+        PanelAccionesPadre.setPreferredSize(new java.awt.Dimension(610, 950));
         PanelAccionesPadre.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 20));
 
         PanelAcciones.setBackground(java.awt.Color.white);
         PanelAcciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
-        PanelAcciones.setPreferredSize(new java.awt.Dimension(600, 735));
+        PanelAcciones.setPreferredSize(new java.awt.Dimension(600, 940));
         PanelAcciones.setLayout(null);
 
         PanelMovimientos.setBackground(java.awt.Color.white);
@@ -377,7 +388,46 @@ public class RegistroDiario extends javax.swing.JFrame {
             }
         });
         PanelAcciones.add(btnGuardar);
-        btnGuardar.setBounds(200, 620, 200, 80);
+        btnGuardar.setBounds(200, 820, 200, 80);
+
+        cbxFecha.setBackground(java.awt.Color.white);
+        cbxFecha.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxFecha.setSelected(true);
+        cbxFecha.setText("Usar fecha actual");
+        cbxFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cbxFecha.setOpaque(true);
+        cbxFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFechaActionPerformed(evt);
+            }
+        });
+        PanelAcciones.add(cbxFecha);
+        cbxFecha.setBounds(150, 775, 300, 30);
+
+        PanelFecha.setBackground(java.awt.Color.white);
+        PanelFecha.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Fecha:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
+        PanelFecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
+
+        cbDia.setBackground(java.awt.Color.white);
+        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Dia", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
+        cbDia.setPreferredSize(new java.awt.Dimension(150, 80));
+        PanelFecha.add(cbDia);
+
+        cbMes.setBackground(java.awt.Color.white);
+        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cbMes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Mes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
+        cbMes.setPreferredSize(new java.awt.Dimension(150, 80));
+        PanelFecha.add(cbMes);
+
+        cbAno.setBackground(java.awt.Color.white);
+        cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        cbAno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Ano", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
+        cbAno.setPreferredSize(new java.awt.Dimension(150, 80));
+        PanelFecha.add(cbAno);
+
+        PanelAcciones.add(PanelFecha);
+        PanelFecha.setBounds(10, 610, 580, 150);
 
         PanelAccionesPadre.add(PanelAcciones);
 
@@ -400,7 +450,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelInferior, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -432,22 +482,48 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarRegistroActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(rbtCompra.isSelected()){
-            String fechaActual = String.valueOf(fecha.DAY_OF_MONTH + "/" +fecha.MONTH + "/" + fecha.YEAR);
-            String[] datos = {fechaActual,"Proovedoor",txtConcepto.getText(),txtMonto.getText(),"0"};
-            modelo.addRow(datos);
+        if (rbtCompra.isSelected()) {
+            String fechaActual;
+            if (cbxFecha.isSelected()) {
+                fechaActual = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH) + "/" + (fecha.get(Calendar.MONTH) + 1) + "/" + fecha.get(Calendar.YEAR));
+                String[] datos = {fechaActual, "Proovedoor", txtConcepto.getText(), txtMonto.getText(), "0"};
+                modelo.addRow(datos);
+            } else {
+            }
+
             tcr = new DefaultTableCellHeaderRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
             Tabla.setBackground(Color.white);
             Tabla.setModel(modelo);
         }
-               
-        
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
-    
+
+    private void cbxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFechaActionPerformed
+        if (cbxFecha.isSelected()) {
+            PanelAcciones.remove(PanelFecha);
+            cbxFecha.setLocation(150, 610);
+            btnGuardar.setLocation(200, 655);
+            PanelAcciones.setPreferredSize(new Dimension(600, 770));
+            PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 780));
+            PanelAcciones.updateUI();
+            PanelAccionesPadre.updateUI();
+        } else {
+            PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 950));
+            PanelAcciones.setPreferredSize(new Dimension(600, 940));
+            PanelAcciones.add(PanelFecha);
+            PanelFecha.setLocation(10, 610);
+            cbxFecha.setLocation(150, 775);
+            btnGuardar.setLocation(200, 820);
+            PanelAccionesPadre.updateUI();
+            PanelAcciones.updateUI();
+        }
+    }//GEN-LAST:event_cbxFechaActionPerformed
+
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegistroDiario().setVisible(true);
@@ -463,6 +539,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelCentral;
     private javax.swing.JPanel PanelConcepto;
     private javax.swing.JScrollPane PanelDerecho;
+    private javax.swing.JPanel PanelFecha;
     private javax.swing.JPanel PanelInferior;
     private javax.swing.JScrollPane PanelIzquierdo;
     private javax.swing.JPanel PanelMonto;
@@ -482,6 +559,10 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistroDiario;
     private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbAno;
+    private javax.swing.JComboBox<String> cbDia;
+    private javax.swing.JComboBox<String> cbMes;
+    private javax.swing.JCheckBox cbxFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
