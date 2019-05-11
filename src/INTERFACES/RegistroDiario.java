@@ -77,8 +77,6 @@ public class RegistroDiario extends javax.swing.JFrame {
         btnEliminarRegistro = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
         PanelCentral = new javax.swing.JPanel();
-        PanelIzquierdo = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
         PanelDerecho = new javax.swing.JScrollPane();
         Panel = new javax.swing.JPanel();
         PanelTitulo = new javax.swing.JPanel();
@@ -104,13 +102,27 @@ public class RegistroDiario extends javax.swing.JFrame {
         cbDia = new javax.swing.JComboBox<>();
         cbMes = new javax.swing.JComboBox<>();
         cbAno = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        PanelOpcionesTabla = new javax.swing.JTabbedPane();
+        PanelInicio = new javax.swing.JPanel();
+        btnSumasIguales = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        PanelOpciones = new javax.swing.JPanel();
+        PanelFormato = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        btnNegrita = new javax.swing.JToggleButton();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        PanelIzquierdo = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/cartera.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Diario");
-        setPreferredSize(new java.awt.Dimension(1400, 800));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
 
         PanelInferior.setBackground(java.awt.Color.gray);
         PanelInferior.setPreferredSize(new java.awt.Dimension(1200, 100));
@@ -242,22 +254,6 @@ public class RegistroDiario extends javax.swing.JFrame {
         BarraDeHerramientas.add(btnAjustes);
 
         PanelCentral.setLayout(new java.awt.GridLayout(1, 2));
-
-        Tabla.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
-        Tabla.setFont(fuente.setFont(fuente.Regular, 0, 15)
-        );
-        Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Título 1", "Título 2", "Título 3", "Título 4", "Título 5"
-            }
-        ));
-        Tabla.setRowHeight(50);
-        PanelIzquierdo.setViewportView(Tabla);
-
-        PanelCentral.add(PanelIzquierdo);
 
         Panel.setLayout(new java.awt.BorderLayout());
 
@@ -494,6 +490,118 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         PanelCentral.add(PanelDerecho);
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        PanelOpcionesTabla.setBackground(java.awt.Color.gray);
+        PanelOpcionesTabla.setForeground(java.awt.Color.white);
+        PanelOpcionesTabla.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        PanelOpcionesTabla.setToolTipText("Opciones");
+        PanelOpcionesTabla.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        PanelOpcionesTabla.setPreferredSize(new java.awt.Dimension(8, 115));
+
+        PanelInicio.setToolTipText("Opciones");
+        PanelInicio.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 7));
+
+        btnSumasIguales.setBackground(java.awt.Color.gray);
+        btnSumasIguales.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        btnSumasIguales.setForeground(java.awt.Color.white);
+        btnSumasIguales.setText("Sumas Iguales");
+        btnSumasIguales.setPreferredSize(new java.awt.Dimension(135, 60));
+        btnSumasIguales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSumasIgualesMousePressed(evt);
+            }
+        });
+        PanelInicio.add(btnSumasIguales);
+
+        jButton2.setBackground(java.awt.Color.gray);
+        jButton2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jButton2.setForeground(java.awt.Color.white);
+        jButton2.setText("Guardar");
+        jButton2.setPreferredSize(new java.awt.Dimension(120, 60));
+        PanelInicio.add(jButton2);
+
+        PanelOpcionesTabla.addTab("Inicio", PanelInicio);
+
+        javax.swing.GroupLayout PanelOpcionesLayout = new javax.swing.GroupLayout(PanelOpciones);
+        PanelOpciones.setLayout(PanelOpcionesLayout);
+        PanelOpcionesLayout.setHorizontalGroup(
+            PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 692, Short.MAX_VALUE)
+        );
+        PanelOpcionesLayout.setVerticalGroup(
+            PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 75, Short.MAX_VALUE)
+        );
+
+        PanelOpcionesTabla.addTab("Opciones", PanelOpciones);
+
+        jComboBox1.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Google Sans", "Arial", "Calibri", "Lato", "Stencil", " " }));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tipo de letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelFormato.add(jComboBox1);
+
+        jComboBox2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14", "15", "16", "18", "20", " " }));
+        jComboBox2.setSelectedIndex(4);
+        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tamano de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox2.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelFormato.add(jComboBox2);
+
+        btnNegrita.setBackground(java.awt.Color.white);
+        btnNegrita.setFont(new java.awt.Font("Google Sans", 1, 20)); // NOI18N
+        btnNegrita.setForeground(java.awt.Color.black);
+        btnNegrita.setText("N");
+        btnNegrita.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Negrita", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(89, 177, 108))); // NOI18N
+        btnNegrita.setPreferredSize(new java.awt.Dimension(80, 60));
+        btnNegrita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnNegritaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnNegritaMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNegritaMouseClicked(evt);
+            }
+        });
+        PanelFormato.add(btnNegrita);
+
+        jComboBox3.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blanco", "Negro", "Gris", "Azul", "Rojo", "Verde", " " }));
+        jComboBox3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de  la tabla", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox3.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelFormato.add(jComboBox3);
+
+        jComboBox4.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Azul", "Verde", "Amarillo", "Rojo", "Gris", " ", " " }));
+        jComboBox4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox4.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelFormato.add(jComboBox4);
+
+        PanelOpcionesTabla.addTab("Formato", PanelFormato);
+
+        jPanel1.add(PanelOpcionesTabla, java.awt.BorderLayout.SOUTH);
+
+        Tabla.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
+        Tabla.setFont(fuente.setFont(fuente.Regular, 0, 15)
+        );
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título 1", "Título 2", "Título 3", "Título 4", "Título 5"
+            }
+        ));
+        Tabla.setRowHeight(50);
+        PanelIzquierdo.setViewportView(Tabla);
+
+        jPanel1.add(PanelIzquierdo, java.awt.BorderLayout.CENTER);
+
+        PanelCentral.add(jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -507,7 +615,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
+                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelInferior, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -682,6 +790,23 @@ public class RegistroDiario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbtOtrosActionPerformed
 
+    private void btnNegritaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseReleased
+      btnNegrita.setBackground(Color.white);
+      btnNegrita.setForeground(Color.black);
+    }//GEN-LAST:event_btnNegritaMouseReleased
+
+    private void btnNegritaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseClicked
+        
+    }//GEN-LAST:event_btnNegritaMouseClicked
+
+    private void btnNegritaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMousePressed
+      
+    }//GEN-LAST:event_btnNegritaMousePressed
+
+    private void btnSumasIgualesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSumasIgualesMousePressed
+        
+    }//GEN-LAST:event_btnSumasIgualesMousePressed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -700,10 +825,14 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelConcepto;
     private javax.swing.JScrollPane PanelDerecho;
     private javax.swing.JPanel PanelFecha;
+    private javax.swing.JPanel PanelFormato;
     private javax.swing.JPanel PanelInferior;
+    private javax.swing.JPanel PanelInicio;
     private javax.swing.JScrollPane PanelIzquierdo;
     private javax.swing.JPanel PanelMonto;
     private javax.swing.JPanel PanelMovimientos;
+    private javax.swing.JPanel PanelOpciones;
+    private javax.swing.JTabbedPane PanelOpcionesTabla;
     private javax.swing.JPanel PanelTitulo;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton btnAjustes;
@@ -715,15 +844,23 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton btnEsquemasDeMayor;
     private javax.swing.JButton btnEstadoDeResultados;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JToggleButton btnNegrita;
     private javax.swing.JButton btnNuevoRegistro;
     private javax.swing.JButton btnRegistroDiario;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSumasIguales;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbAno;
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JCheckBox cbxFecha;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
     private javax.swing.JRadioButton rbtCompra;
     private javax.swing.JRadioButton rbtDescCliente;
