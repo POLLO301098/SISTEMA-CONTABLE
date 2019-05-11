@@ -204,6 +204,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/IMAGENES/anadir.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Nuevo Registro"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -215,23 +216,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoRegistroActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnEditarRegistro">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IMAGENES/editar.png"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 50]"/>
-            </Property>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnCancelarRegistro">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -240,6 +224,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/IMAGENES/cancelar.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Cancelar Registro"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -252,6 +237,24 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarRegistroActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btnEditarRegistro">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/IMAGENES/editar.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Editar celda"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[50, 50]"/>
+            </Property>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="btnEliminarRegistro">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -260,6 +263,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/IMAGENES/eliminar.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Borrar fila"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -277,6 +281,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/IMAGENES/configuracion_1.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ajustes"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -310,12 +315,15 @@
                     </LineBorder>
                   </Border>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="fuente.setFont(fuente.Regular, 0, 15)&#xa;" type="code"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#xed;tulo 1" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#xed;tulo 2" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#xed;tulo 3" type="java.lang.Object"/>
+                    <Column editable="true" title="T&#xed;tulo 4" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xed;tulo 5" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -455,15 +463,17 @@
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Google Sans" size="15" style="0"/>
                                 </Property>
-                                <Property name="selected" type="boolean" value="true"/>
                                 <Property name="text" type="java.lang.String" value="Compra"/>
                                 <Property name="hideActionText" type="boolean" value="true"/>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtCompraActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                            <Component class="javax.swing.JRadioButton" name="rbtVenta">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -480,8 +490,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtVentaActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+                            <Component class="javax.swing.JRadioButton" name="rbtDevCliente">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -498,8 +511,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtDevClienteActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+                            <Component class="javax.swing.JRadioButton" name="rbtDevProovedor">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -516,8 +532,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtDevProovedorActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton5">
+                            <Component class="javax.swing.JRadioButton" name="rbtDescCliente">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -534,8 +553,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtDescClienteActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton6">
+                            <Component class="javax.swing.JRadioButton" name="rbtDescProovedor">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -552,8 +574,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtDescProovedorActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton7">
+                            <Component class="javax.swing.JRadioButton" name="rbtGastos">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -570,8 +595,11 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtGastosActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JRadioButton" name="jRadioButton8">
+                            <Component class="javax.swing.JRadioButton" name="rbtOtros">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
@@ -588,6 +616,9 @@
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
                                 <Property name="verticalTextPosition" type="int" value="3"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtOtrosActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -764,15 +795,15 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="31">
-                                    <StringItem index="0" value="1"/>
-                                    <StringItem index="1" value="2"/>
-                                    <StringItem index="2" value="3"/>
-                                    <StringItem index="3" value="4"/>
-                                    <StringItem index="4" value="5"/>
-                                    <StringItem index="5" value="6"/>
-                                    <StringItem index="6" value="7"/>
-                                    <StringItem index="7" value="8"/>
-                                    <StringItem index="8" value="9"/>
+                                    <StringItem index="0" value="01"/>
+                                    <StringItem index="1" value="02"/>
+                                    <StringItem index="2" value="03"/>
+                                    <StringItem index="3" value="04"/>
+                                    <StringItem index="4" value="05"/>
+                                    <StringItem index="5" value="06"/>
+                                    <StringItem index="6" value="07"/>
+                                    <StringItem index="7" value="08"/>
+                                    <StringItem index="8" value="09"/>
                                     <StringItem index="9" value="10"/>
                                     <StringItem index="10" value="11"/>
                                     <StringItem index="11" value="12"/>
@@ -823,18 +854,18 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="12">
-                                    <StringItem index="0" value="Enero"/>
-                                    <StringItem index="1" value="Febrero"/>
-                                    <StringItem index="2" value="Marzo"/>
-                                    <StringItem index="3" value="Abril"/>
-                                    <StringItem index="4" value="Mayo"/>
-                                    <StringItem index="5" value="Junio"/>
-                                    <StringItem index="6" value="Julio"/>
-                                    <StringItem index="7" value="Agosto"/>
-                                    <StringItem index="8" value="Septiembre"/>
-                                    <StringItem index="9" value="Octubre"/>
-                                    <StringItem index="10" value="Noviembre"/>
-                                    <StringItem index="11" value="Diciembre"/>
+                                    <StringItem index="0" value="01"/>
+                                    <StringItem index="1" value="02"/>
+                                    <StringItem index="2" value="03"/>
+                                    <StringItem index="3" value="04"/>
+                                    <StringItem index="4" value="05"/>
+                                    <StringItem index="5" value="06"/>
+                                    <StringItem index="6" value="07"/>
+                                    <StringItem index="7" value="08"/>
+                                    <StringItem index="8" value="09"/>
+                                    <StringItem index="9" value="10"/>
+                                    <StringItem index="10" value="11"/>
+                                    <StringItem index="11" value="12"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
