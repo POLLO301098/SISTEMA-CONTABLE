@@ -2,22 +2,23 @@ package INTERFACES;
 
 import FUENTES.cargarFuente;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
+import javax.swing.table.TableCellRenderer;
 
 public class RegistroDiario extends javax.swing.JFrame {
 
-    //
-    JScrollPane scroll1 = new JScrollPane();
     cargarFuente fuente = new cargarFuente();
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableCellRenderer tcr;
@@ -51,10 +52,13 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 780));
 
         tcr = new DefaultTableCellRenderer();
-        for (int x = 0; x <= 4; x++) {
+        for (int z = 0; z <=4; z++ ){
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            Tabla.getColumnModel().getColumn(x).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(z).setCellRenderer(tcr);
+
         }
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -108,11 +112,10 @@ public class RegistroDiario extends javax.swing.JFrame {
         btnSumasIguales = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         PanelOpciones = new javax.swing.JPanel();
-        PanelFormato = new javax.swing.JPanel();
+        PanelCelda = new javax.swing.JPanel();
+        btnNegrita = new javax.swing.JToggleButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        btnNegrita = new javax.swing.JToggleButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         PanelIzquierdo = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
@@ -496,7 +499,9 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpcionesTabla.setForeground(java.awt.Color.white);
         PanelOpcionesTabla.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         PanelOpcionesTabla.setToolTipText("Opciones");
+        PanelOpcionesTabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelOpcionesTabla.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        PanelOpcionesTabla.setOpaque(true);
         PanelOpcionesTabla.setPreferredSize(new java.awt.Dimension(8, 115));
 
         PanelInicio.setToolTipText("Opciones");
@@ -527,7 +532,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpciones.setLayout(PanelOpcionesLayout);
         PanelOpcionesLayout.setHorizontalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         PanelOpcionesLayout.setVerticalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -535,19 +540,6 @@ public class RegistroDiario extends javax.swing.JFrame {
         );
 
         PanelOpcionesTabla.addTab("Opciones", PanelOpciones);
-
-        jComboBox1.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Google Sans", "Arial", "Calibri", "Lato", "Stencil", " " }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tipo de letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelFormato.add(jComboBox1);
-
-        jComboBox2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14", "15", "16", "18", "20", " " }));
-        jComboBox2.setSelectedIndex(4);
-        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tamano de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox2.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelFormato.add(jComboBox2);
 
         btnNegrita.setBackground(java.awt.Color.white);
         btnNegrita.setFont(new java.awt.Font("Google Sans", 1, 20)); // NOI18N
@@ -566,21 +558,33 @@ public class RegistroDiario extends javax.swing.JFrame {
                 btnNegritaMouseClicked(evt);
             }
         });
-        PanelFormato.add(btnNegrita);
+        btnNegrita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNegritaActionPerformed(evt);
+            }
+        });
+        PanelCelda.add(btnNegrita);
 
-        jComboBox3.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blanco", "Negro", "Gris", "Azul", "Rojo", "Verde", " " }));
-        jComboBox3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de  la tabla", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox3.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelFormato.add(jComboBox3);
+        jComboBox1.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Google Sans", "Arial", "Calibri", "Lato", "Stencil", " " }));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tipo de letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelCelda.add(jComboBox1);
+
+        jComboBox2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14", "15", "16", "18", "20", " " }));
+        jComboBox2.setSelectedIndex(4);
+        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tamano de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        jComboBox2.setPreferredSize(new java.awt.Dimension(140, 65));
+        PanelCelda.add(jComboBox2);
 
         jComboBox4.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Azul", "Verde", "Amarillo", "Rojo", "Gris", " ", " " }));
         jComboBox4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
         jComboBox4.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelFormato.add(jComboBox4);
+        PanelCelda.add(jComboBox4);
 
-        PanelOpcionesTabla.addTab("Formato", PanelFormato);
+        PanelOpcionesTabla.addTab("Diseno", PanelCelda);
 
         jPanel1.add(PanelOpcionesTabla, java.awt.BorderLayout.SOUTH);
 
@@ -595,7 +599,13 @@ public class RegistroDiario extends javax.swing.JFrame {
                 "Título 1", "Título 2", "Título 3", "Título 4", "Título 5"
             }
         ));
+        Tabla.setCellSelectionEnabled(true);
         Tabla.setRowHeight(50);
+        Tabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TablaKeyPressed(evt);
+            }
+        });
         PanelIzquierdo.setViewportView(Tabla);
 
         jPanel1.add(PanelIzquierdo, java.awt.BorderLayout.CENTER);
@@ -608,14 +618,14 @@ public class RegistroDiario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1376, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(PanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelInferior, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -653,68 +663,68 @@ public class RegistroDiario extends javax.swing.JFrame {
         String fecha;
 
         //Comprovar que se selecciono un radioButton
-        if(rbtCompra.isSelected() || rbtVenta.isSelected() || rbtDescCliente.isSelected() || rbtDescProovedor.isSelected() || rbtDevCliente.isSelected() ||
-                rbtDevProovedor.isSelected() || rbtGastos.isSelected() || rbtOtros.isSelected()){
-        //EstablecerFecha
-        if (cbxFecha.isSelected()) {
-            fecha = String.valueOf(calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH)+1) + "/" + calendario.get(Calendar.YEAR));
-        } else {
-            fecha = cbDia.getSelectedItem().toString() + "/" + cbMes.getSelectedItem().toString() + "/" + cbAno.getSelectedItem().toString();
-        }
-        
-        //Caso compra ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtCompra.isSelected()) {
-            llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "Proovedor", "Venta de mercancia", "0", txtMonto.getText());
-        }
-        
-        //Caso venta ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtVenta.isSelected()) {
-            llenarFila1(fecha, "Cliente", "Compra de Mercancia", txtMonto.getText(), "0");
-            llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //Caso devolucion del cliente ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDevCliente.isSelected()) {
-            llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //Caso devolucion al proovedor ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDevProovedor.isSelected()) {
-            llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //Caso descuento al cliente ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDescCliente.isSelected()) {
-            llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //Caso descuento del proovedor ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDescCliente.isSelected()) {
-            llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //caso Gastos ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDescCliente.isSelected()) {
-            llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "Proovedor", txtConcepto.getText(), "0", txtMonto.getText());
-        }
-        
-        //Otro caso ---------------------------------------------------------------------------------------------------------------------------------
-        if (rbtDescCliente.isSelected()) {
-            llenarFila1(fecha, "", txtConcepto.getText(), txtMonto.getText(), "0");
-            llenarFila2(fecha, "", txtConcepto.getText(), "0", txtMonto.getText());
-        }
+        if (rbtCompra.isSelected() || rbtVenta.isSelected() || rbtDescCliente.isSelected() || rbtDescProovedor.isSelected() || rbtDevCliente.isSelected()
+                || rbtDevProovedor.isSelected() || rbtGastos.isSelected() || rbtOtros.isSelected()) {
+            //EstablecerFecha
+            if (cbxFecha.isSelected()) {
+                fecha = String.valueOf(calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+            } else {
+                fecha = cbDia.getSelectedItem().toString() + "/" + cbMes.getSelectedItem().toString() + "/" + cbAno.getSelectedItem().toString();
+            }
 
-        modelo.addRow(datosFila1);
-        modelo.addRow(datosFila2);
-        Tabla.setModel(modelo);
-        txtConcepto.setText("");
-        txtMonto.setText("");
+            //Caso compra ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtCompra.isSelected()) {
+                llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "Proovedor", "Venta de mercancia", "0", txtMonto.getText());
+            }
+
+            //Caso venta ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtVenta.isSelected()) {
+                llenarFila1(fecha, "Cliente", "Compra de Mercancia", txtMonto.getText(), "0");
+                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //Caso devolucion del cliente ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDevCliente.isSelected()) {
+                llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //Caso devolucion al proovedor ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDevProovedor.isSelected()) {
+                llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //Caso descuento al cliente ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDescCliente.isSelected()) {
+                llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //Caso descuento del proovedor ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDescCliente.isSelected()) {
+                llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //caso Gastos ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDescCliente.isSelected()) {
+                llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "Proovedor", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            //Otro caso ---------------------------------------------------------------------------------------------------------------------------------
+            if (rbtDescCliente.isSelected()) {
+                llenarFila1(fecha, "", txtConcepto.getText(), txtMonto.getText(), "0");
+                llenarFila2(fecha, "", txtConcepto.getText(), "0", txtMonto.getText());
+            }
+
+            modelo.addRow(datosFila1);
+            modelo.addRow(datosFila2);
+            Tabla.setModel(modelo);
+            txtConcepto.setText("");
+            txtMonto.setText("");
 
         } else {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una opcion en el panel de movimientos");
@@ -767,13 +777,13 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtDevProovedorActionPerformed
 
     private void rbtDescClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescClienteActionPerformed
-       if (rbtDescCliente.isSelected()) {
+        if (rbtDescCliente.isSelected()) {
             txtConcepto.setText("Descuento por compra de mercancia");
         }
     }//GEN-LAST:event_rbtDescClienteActionPerformed
 
     private void rbtDescProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescProovedorActionPerformed
-       if (rbtDescProovedor.isSelected()) {
+        if (rbtDescProovedor.isSelected()) {
             txtConcepto.setText("Descuento por compra de mercancia");
         }
     }//GEN-LAST:event_rbtDescProovedorActionPerformed
@@ -790,22 +800,30 @@ public class RegistroDiario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbtOtrosActionPerformed
 
-    private void btnNegritaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseReleased
-      btnNegrita.setBackground(Color.white);
-      btnNegrita.setForeground(Color.black);
-    }//GEN-LAST:event_btnNegritaMouseReleased
+    private void btnNegritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegritaActionPerformed
+
+    }//GEN-LAST:event_btnNegritaActionPerformed
 
     private void btnNegritaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseClicked
-        
+
     }//GEN-LAST:event_btnNegritaMouseClicked
 
+    private void btnNegritaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseReleased
+        btnNegrita.setBackground(Color.white);
+        btnNegrita.setForeground(Color.black);
+    }//GEN-LAST:event_btnNegritaMouseReleased
+
     private void btnNegritaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMousePressed
-      
+
     }//GEN-LAST:event_btnNegritaMousePressed
 
     private void btnSumasIgualesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSumasIgualesMousePressed
-        
+
     }//GEN-LAST:event_btnSumasIgualesMousePressed
+
+    private void TablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TablaKeyPressed
+        
+    }//GEN-LAST:event_TablaKeyPressed
 
     public static void main(String args[]) {
 
@@ -821,11 +839,11 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel Panel;
     private javax.swing.JPanel PanelAcciones;
     private javax.swing.JPanel PanelAccionesPadre;
+    private javax.swing.JPanel PanelCelda;
     private javax.swing.JPanel PanelCentral;
     private javax.swing.JPanel PanelConcepto;
     private javax.swing.JScrollPane PanelDerecho;
     private javax.swing.JPanel PanelFecha;
-    private javax.swing.JPanel PanelFormato;
     private javax.swing.JPanel PanelInferior;
     private javax.swing.JPanel PanelInicio;
     private javax.swing.JScrollPane PanelIzquierdo;
@@ -834,7 +852,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelOpciones;
     private javax.swing.JTabbedPane PanelOpcionesTabla;
     private javax.swing.JPanel PanelTitulo;
-    private javax.swing.JTable Tabla;
+    public javax.swing.JTable Tabla;
     private javax.swing.JButton btnAjustes;
     private javax.swing.JButton btnBalanceGeneral;
     private javax.swing.JButton btnBalanzasDeComprobacion;
@@ -857,7 +875,6 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -889,4 +906,5 @@ public class RegistroDiario extends javax.swing.JFrame {
         datosFila2[3] = cargo;
         datosFila2[4] = abono;
     }
+    
 }
