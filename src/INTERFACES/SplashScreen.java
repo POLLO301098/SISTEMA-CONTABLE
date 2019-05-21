@@ -31,7 +31,7 @@ public class SplashScreen extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().setLayout(null);
 
-        titulo.setFont(fuente.setFont(fuente.negrita, 0, 40)
+        titulo.setFont(fuente.setFont(fuente.GoogleNegrita, 0, 40)
         );
         titulo.setForeground(java.awt.Color.white);
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

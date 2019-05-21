@@ -2,20 +2,19 @@ package INTERFACES;
 
 import FUENTES.cargarFuente;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 public class RegistroDiario extends javax.swing.JFrame {
 
@@ -33,32 +32,37 @@ public class RegistroDiario extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/IMAGENES/cartera.png")));
         setTitle("Registro Diario");
 
+        //darle forma a la fila de titulos
         String[] titulos = {"Fecha", "Cuenta", "Concepto", "Cargo", "Abono"};
         modelo.setColumnIdentifiers(titulos);
         Tabla.setModel(modelo);
         Tabla.getTableHeader().setPreferredSize(new java.awt.Dimension(200, 60));
         Tabla.getTableHeader().setBackground(new Color(232, 63, 96));
         Tabla.getTableHeader().setForeground(Color.white);
-        Tabla.getTableHeader().setFont(fuente.setFont(fuente.negrita, 0, 20));
+        Tabla.getTableHeader().setFont(fuente.setFont(fuente.GoogleNegrita, 0, 20));
 
+        //Iniciar panel izquierdo con logo
         PanelAccionesPadre.remove(PanelAcciones);
         PanelAccionesPadre.setLayout(new GridLayout());
         PanelAccionesPadre.add(logo);
 
+        //Mostrar panel Fecha
         PanelAcciones.remove(PanelFecha);
         cbxFecha.setLocation(150, 610);
         btnGuardar.setLocation(200, 655);
         PanelAcciones.setPreferredSize(new Dimension(600, 770));
         PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 780));
 
+        //Alinear datos de la tebla al centro
         tcr = new DefaultTableCellRenderer();
-        for (int z = 0; z <=4; z++ ){
+        for (int z = 0; z <= 4; z++) {
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             Tabla.getColumnModel().getColumn(z).setCellRenderer(tcr);
 
         }
-        
-        
+
+        Tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -114,9 +118,10 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpciones = new javax.swing.JPanel();
         PanelCelda = new javax.swing.JPanel();
         btnNegrita = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbxTipoLetra = new javax.swing.JComboBox<>();
+        cbxTamanoLetra = new javax.swing.JComboBox<>();
+        cbxColorLetra = new javax.swing.JComboBox<>();
+        cbxColorFondo = new javax.swing.JComboBox<>();
         PanelIzquierdo = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
 
@@ -125,13 +130,12 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Diario");
-        setPreferredSize(new java.awt.Dimension(1400, 900));
 
         PanelInferior.setBackground(java.awt.Color.gray);
         PanelInferior.setPreferredSize(new java.awt.Dimension(1200, 100));
 
         btnRegistroDiario.setBackground(java.awt.Color.white);
-        btnRegistroDiario.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnRegistroDiario.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnRegistroDiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/checklist.png"))); // NOI18N
         btnRegistroDiario.setText("Registro Diario");
@@ -142,7 +146,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInferior.add(btnRegistroDiario);
 
         btnEsquemasDeMayor.setBackground(java.awt.Color.white);
-        btnEsquemasDeMayor.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnEsquemasDeMayor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnEsquemasDeMayor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/rgb.png"))); // NOI18N
         btnEsquemasDeMayor.setText("Esqeumas De Mayor");
@@ -152,7 +156,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInferior.add(btnEsquemasDeMayor);
 
         btnBalanzasDeComprobacion.setBackground(java.awt.Color.white);
-        btnBalanzasDeComprobacion.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnBalanzasDeComprobacion.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnBalanzasDeComprobacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/resultado.png"))); // NOI18N
         btnBalanzasDeComprobacion.setText("Balanzas De Comprobacion");
@@ -162,7 +166,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInferior.add(btnBalanzasDeComprobacion);
 
         btnEstadoDeResultados.setBackground(java.awt.Color.white);
-        btnEstadoDeResultados.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnEstadoDeResultados.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnEstadoDeResultados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/salud.png"))); // NOI18N
         btnEstadoDeResultados.setText("Estado De Resultados");
@@ -172,7 +176,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInferior.add(btnEstadoDeResultados);
 
         btnBalanceGeneral.setBackground(java.awt.Color.white);
-        btnBalanceGeneral.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnBalanceGeneral.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnBalanceGeneral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/balanza.png"))); // NOI18N
         btnBalanceGeneral.setText("Balance General");
@@ -182,7 +186,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInferior.add(btnBalanceGeneral);
 
         btnSalir.setBackground(java.awt.Color.white);
-        btnSalir.setFont(fuente.setFont(fuente.negrita, 0, 15)
+        btnSalir.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/salir.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -265,7 +269,8 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelTitulo.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(new java.awt.Font("Google Sans", 1, 30)); // NOI18N
+        jLabel1.setFont(fuente.setFont(fuente.GoogleNegrita, 1, 30)
+        );
         jLabel1.setForeground(new java.awt.Color(59, 182, 96));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro Diario");
@@ -288,7 +293,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtCompra.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtCompra);
-        rbtCompra.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtCompra.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtCompra.setText("Compra");
         rbtCompra.setHideActionText(true);
         rbtCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -303,7 +309,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtVenta.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtVenta);
-        rbtVenta.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtVenta.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtVenta.setText("Venta");
         rbtVenta.setHideActionText(true);
         rbtVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -318,7 +325,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtDevCliente.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtDevCliente);
-        rbtDevCliente.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtDevCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtDevCliente.setText("Devoucion del cliente");
         rbtDevCliente.setHideActionText(true);
         rbtDevCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -333,7 +341,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtDevProovedor.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtDevProovedor);
-        rbtDevProovedor.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtDevProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtDevProovedor.setText("Devol. al proovedoor");
         rbtDevProovedor.setHideActionText(true);
         rbtDevProovedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -348,7 +357,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtDescCliente.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtDescCliente);
-        rbtDescCliente.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtDescCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtDescCliente.setText("Descuento al cliente");
         rbtDescCliente.setHideActionText(true);
         rbtDescCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -363,7 +373,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtDescProovedor.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtDescProovedor);
-        rbtDescProovedor.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtDescProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtDescProovedor.setText("Desc. del proovedor");
         rbtDescProovedor.setHideActionText(true);
         rbtDescProovedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -378,7 +389,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtGastos.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtGastos);
-        rbtGastos.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtGastos.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtGastos.setText("Gastos");
         rbtGastos.setHideActionText(true);
         rbtGastos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -393,7 +405,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         rbtOtros.setBackground(java.awt.Color.white);
         buttonGroup1.add(rbtOtros);
-        rbtOtros.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        rbtOtros.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
         rbtOtros.setText("Otro");
         rbtOtros.setHideActionText(true);
         rbtOtros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -435,7 +448,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelMonto.setBounds(10, 445, 580, 150);
 
         btnGuardar.setBackground(new java.awt.Color(232, 63, 96));
-        btnGuardar.setFont(new java.awt.Font("Google Sans", 0, 25)); // NOI18N
+        btnGuardar.setFont(fuente.setFont(fuente.GoogleRegular, 0, 30));
         btnGuardar.setForeground(java.awt.Color.white);
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -524,6 +537,11 @@ public class RegistroDiario extends javax.swing.JFrame {
         jButton2.setForeground(java.awt.Color.white);
         jButton2.setText("Guardar");
         jButton2.setPreferredSize(new java.awt.Dimension(120, 60));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         PanelInicio.add(jButton2);
 
         PanelOpcionesTabla.addTab("Inicio", PanelInicio);
@@ -532,7 +550,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpciones.setLayout(PanelOpcionesLayout);
         PanelOpcionesLayout.setHorizontalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 692, Short.MAX_VALUE)
         );
         PanelOpcionesLayout.setVerticalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,31 +583,58 @@ public class RegistroDiario extends javax.swing.JFrame {
         });
         PanelCelda.add(btnNegrita);
 
-        jComboBox1.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Google Sans", "Arial", "Calibri", "Lato", "Stencil", " " }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tipo de letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelCelda.add(jComboBox1);
+        cbxTipoLetra.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxTipoLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Google Sans", "Arial", "Calibri", "Lato", "Stencil", " " }));
+        cbxTipoLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tipo de letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        cbxTipoLetra.setPreferredSize(new java.awt.Dimension(140, 65));
+        cbxTipoLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipoLetraActionPerformed(evt);
+            }
+        });
+        PanelCelda.add(cbxTipoLetra);
 
-        jComboBox2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14", "15", "16", "18", "20", " " }));
-        jComboBox2.setSelectedIndex(4);
-        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tamano de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox2.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelCelda.add(jComboBox2);
+        cbxTamanoLetra.setEditable(true);
+        cbxTamanoLetra.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxTamanoLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "10", "12", "14", "15", "16", "18", "20", " " }));
+        cbxTamanoLetra.setSelectedIndex(4);
+        cbxTamanoLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Tamano de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        cbxTamanoLetra.setPreferredSize(new java.awt.Dimension(140, 65));
+        cbxTamanoLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTamanoLetraActionPerformed(evt);
+            }
+        });
+        PanelCelda.add(cbxTamanoLetra);
 
-        jComboBox4.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Azul", "Verde", "Amarillo", "Rojo", "Gris", " ", " " }));
-        jComboBox4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
-        jComboBox4.setPreferredSize(new java.awt.Dimension(140, 65));
-        PanelCelda.add(jComboBox4);
+        cbxColorLetra.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxColorLetra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Azul", "Verde", "Amarillo", "Rojo", "Gris", " ", " " }));
+        cbxColorLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de la letra", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        cbxColorLetra.setPreferredSize(new java.awt.Dimension(140, 65));
+        cbxColorLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxColorLetraActionPerformed(evt);
+            }
+        });
+        PanelCelda.add(cbxColorLetra);
+
+        cbxColorFondo.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxColorFondo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Azul", "Verde", "Amarillo", "Rojo", "Gris", " ", " " }));
+        cbxColorFondo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Color de fondo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(91, 170, 126))); // NOI18N
+        cbxColorFondo.setPreferredSize(new java.awt.Dimension(140, 65));
+        cbxColorFondo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxColorFondoActionPerformed(evt);
+            }
+        });
+        PanelCelda.add(cbxColorFondo);
 
         PanelOpcionesTabla.addTab("Diseno", PanelCelda);
 
         jPanel1.add(PanelOpcionesTabla, java.awt.BorderLayout.SOUTH);
 
         Tabla.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
-        Tabla.setFont(fuente.setFont(fuente.Regular, 0, 15)
+        Tabla.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
         );
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -618,7 +663,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1376, Short.MAX_VALUE)
+            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,6 +846,17 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtOtrosActionPerformed
 
     private void btnNegritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegritaActionPerformed
+        if (btnNegrita.isSelected()) {
+            if (fuente.getFontName().equals("GoogleSans-Regular.ttf")) {
+                Tabla.setFont(fuente.setFont(fuente.GoogleNegrita, 0, fuente.getTamano()));
+            }
+            Tabla.setFont(fuente.setFont(fuente.getFontName(), 1, fuente.getTamano()));
+        } else {
+            if (fuente.getFontName().equals("GoogleSans-Bold.ttf")) {
+                Tabla.setFont(fuente.setFont(fuente.GoogleRegular, 0, fuente.getTamano()));
+            }
+            Tabla.setFont(fuente.setFont(fuente.getFontName(), 0, fuente.getTamano()));
+        }
 
     }//GEN-LAST:event_btnNegritaActionPerformed
 
@@ -809,8 +865,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNegritaMouseClicked
 
     private void btnNegritaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMouseReleased
-        btnNegrita.setBackground(Color.white);
-        btnNegrita.setForeground(Color.black);
+
     }//GEN-LAST:event_btnNegritaMouseReleased
 
     private void btnNegritaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMousePressed
@@ -822,8 +877,151 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSumasIgualesMousePressed
 
     private void TablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TablaKeyPressed
-        
+
     }//GEN-LAST:event_TablaKeyPressed
+
+    private void cbxColorFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxColorFondoActionPerformed
+        String color = cbxColorFondo.getSelectedItem().toString();
+        switch (color) {
+            case "Negro":
+                Tabla.setBackground(Color.black);
+                break;
+
+            case "Blanco":
+                Tabla.setBackground(Color.white);
+                break;
+
+            case "Azul":
+                Tabla.setBackground(Color.blue);
+                break;
+
+            case "Amarillo":
+                Tabla.setBackground(Color.yellow);
+                break;
+
+            case "Verde":
+                Tabla.setBackground(Color.green);
+                break;
+
+            case "Rojo":
+                Tabla.setBackground(Color.red);
+                break;
+
+            case "Gris":
+                Tabla.setBackground(Color.gray);
+                break;
+        }
+    }//GEN-LAST:event_cbxColorFondoActionPerformed
+
+    private void cbxColorLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxColorLetraActionPerformed
+        String color = cbxColorLetra.getSelectedItem().toString();
+        switch (color) {
+            case "Negro":
+                Tabla.setForeground(Color.black);
+                break;
+
+            case "Blanco":
+                Tabla.setForeground(Color.white);
+                break;
+
+            case "Azul":
+                Tabla.setForeground(Color.blue);
+                break;
+
+            case "Amarillo":
+                Tabla.setForeground(Color.yellow);
+                break;
+
+            case "Verde":
+                Tabla.setForeground(Color.green);
+                break;
+
+            case "Rojo":
+                Tabla.setForeground(Color.red);
+                break;
+
+            case "Gris":
+                Tabla.setForeground(Color.gray);
+                break;
+        }
+
+    }//GEN-LAST:event_cbxColorLetraActionPerformed
+
+    private void cbxTamanoLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTamanoLetraActionPerformed
+        float tamano = Float.parseFloat(cbxTamanoLetra.getSelectedItem().toString());
+        Tabla.setFont(fuente.setFont(fuente.getFontName(), fuente.getEstilo(), tamano));
+    }//GEN-LAST:event_cbxTamanoLetraActionPerformed
+
+    private void cbxTipoLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoLetraActionPerformed
+        String opc = cbxTipoLetra.getSelectedItem().toString();
+        switch (opc) {
+            case "Google Sans":
+                if (btnNegrita.isSelected()) {
+                    Tabla.setFont(fuente.setFont(fuente.GoogleNegrita, 0, fuente.getTamano()));
+                } else {
+                    Tabla.setFont(fuente.setFont(fuente.GoogleRegular, 0, fuente.getTamano()));
+                }
+                break;
+                
+            case "Arial":
+                if (btnNegrita.isSelected()) {
+                    Tabla.setFont(fuente.setFont(fuente.Arial, 1, fuente.getTamano()));
+                } else {
+                    Tabla.setFont(fuente.setFont(fuente.Arial, 0, fuente.getTamano()));
+                }
+                break;
+                
+            case "Calibri":
+                if (btnNegrita.isSelected()) {
+                    Tabla.setFont(fuente.setFont(fuente.Calibri, 1, fuente.getTamano()));
+                } else {
+                    Tabla.setFont(fuente.setFont(fuente.Calibri, 0, fuente.getTamano()));
+                }
+                break;
+                
+            case "Lato":
+                if (btnNegrita.isSelected()) {
+                    Tabla.setFont(fuente.setFont(fuente.Lato, 1, fuente.getTamano()));
+                } else {
+                    Tabla.setFont(fuente.setFont(fuente.Lato, 0, fuente.getTamano()));
+                }
+                break;
+        
+            case "Stencil":
+                if (btnNegrita.isSelected()) {
+                    Tabla.setFont(fuente.setFont(fuente.Stencil, 1, fuente.getTamano()));
+                } else {
+                    Tabla.setFont(fuente.setFont(fuente.Stencil, 0, fuente.getTamano()));
+                }
+                break;    
+        }
+
+    }//GEN-LAST:event_cbxTipoLetraActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+
+            String sucursalesCSVFile = "src/archivos/DatosTabla.txt";
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile ));
+
+            for (int i = 0 ; i < Tabla.getRowCount(); i++) //realiza un barrido por filas.
+            {
+                for(int j = 0 ; j < Tabla.getColumnCount();j++) //realiza un barrido por columnas.
+                {
+                    bfw.write((String)(Tabla.getValueAt(i,j)));
+                    if (j < Tabla.getColumnCount() -1) { //agrega separador "," si no es el ultimo elemento de la fila.
+                        bfw.write(",");
+                    }
+                }
+                bfw.newLine(); //inserta nueva linea.
+            }
+
+            bfw.close(); //cierra archivo!
+            System.out.println("El archivo fue salvado correctamente!");
+        } catch (IOException e) {
+            System.out.println("ERROR: Ocurrio un problema al salvar el archivo!" + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
 
@@ -852,7 +1050,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelOpciones;
     private javax.swing.JTabbedPane PanelOpcionesTabla;
     private javax.swing.JPanel PanelTitulo;
-    public javax.swing.JTable Tabla;
+    public static javax.swing.JTable Tabla;
     private javax.swing.JButton btnAjustes;
     private javax.swing.JButton btnBalanceGeneral;
     private javax.swing.JButton btnBalanzasDeComprobacion;
@@ -871,11 +1069,12 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbAno;
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
+    private javax.swing.JComboBox<String> cbxColorFondo;
+    private javax.swing.JComboBox<String> cbxColorLetra;
     private javax.swing.JCheckBox cbxFecha;
+    private javax.swing.JComboBox<String> cbxTamanoLetra;
+    private javax.swing.JComboBox<String> cbxTipoLetra;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo;
@@ -906,5 +1105,5 @@ public class RegistroDiario extends javax.swing.JFrame {
         datosFila2[3] = cargo;
         datosFila2[4] = abono;
     }
-    
+
 }

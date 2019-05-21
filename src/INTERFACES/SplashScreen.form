@@ -32,7 +32,7 @@
     <Component class="javax.swing.JLabel" name="titulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fuente.setFont(fuente.negrita, 0, 40)&#xa;" type="code"/>
+          <Connection code="fuente.setFont(fuente.GoogleNegrita, 0, 40)&#xa;" type="code"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
