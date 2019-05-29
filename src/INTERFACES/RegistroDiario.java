@@ -1,6 +1,7 @@
 package INTERFACES;
 
 import FUENTES.cargarFuente;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,8 +23,10 @@ public class RegistroDiario extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableCellRenderer tcr;
     Calendar calendario = new GregorianCalendar();
+    String[] titulos = {"Fecha", "Cuenta", "Concepto", "Cargo", "Abono"};
     String[] datosFila1 = new String[5];
     String[] datosFila2 = new String[5];
+    CuentasT ventana = new CuentasT();
 
     public RegistroDiario() {
         initComponents();
@@ -33,13 +36,12 @@ public class RegistroDiario extends javax.swing.JFrame {
         setTitle("Registro Diario");
 
         //darle forma a la fila de titulos
-        String[] titulos = {"Fecha", "Cuenta", "Concepto", "Cargo", "Abono"};
         modelo.setColumnIdentifiers(titulos);
         Tabla.setModel(modelo);
         Tabla.getTableHeader().setPreferredSize(new java.awt.Dimension(200, 60));
         Tabla.getTableHeader().setBackground(new Color(232, 63, 96));
         Tabla.getTableHeader().setForeground(Color.white);
-        Tabla.getTableHeader().setFont(fuente.setFont(fuente.GoogleNegrita, 0, 20));
+        Tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
 
         //Iniciar panel izquierdo con logo
         PanelAccionesPadre.remove(PanelAcciones);
@@ -48,8 +50,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         //Mostrar panel Fecha
         PanelAcciones.remove(PanelFecha);
-        cbxFecha.setLocation(150, 610);
-        btnGuardar.setLocation(200, 655);
+        cbxFecha.setLocation(150, 630);
+        btnGuardar.setLocation(200, 665);
         PanelAcciones.setPreferredSize(new Dimension(600, 770));
         PanelAccionesPadre.setPreferredSize(new Dimension(PanelAccionesPadre.getWidth(), 780));
 
@@ -61,8 +63,6 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         }
 
-        Tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -71,6 +71,8 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         logo = new javax.swing.JLabel();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         PanelInferior = new javax.swing.JPanel();
         btnRegistroDiario = new javax.swing.JButton();
         btnEsquemasDeMayor = new javax.swing.JButton();
@@ -85,21 +87,12 @@ public class RegistroDiario extends javax.swing.JFrame {
         btnEliminarRegistro = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
         PanelCentral = new javax.swing.JPanel();
-        PanelDerecho = new javax.swing.JScrollPane();
-        Panel = new javax.swing.JPanel();
+        PanelIzquierdo = new javax.swing.JPanel();
         PanelTitulo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        ScrollIzquierdo = new javax.swing.JScrollPane();
         PanelAccionesPadre = new javax.swing.JPanel();
         PanelAcciones = new javax.swing.JPanel();
-        PanelMovimientos = new javax.swing.JPanel();
-        rbtCompra = new javax.swing.JRadioButton();
-        rbtVenta = new javax.swing.JRadioButton();
-        rbtDevCliente = new javax.swing.JRadioButton();
-        rbtDevProovedor = new javax.swing.JRadioButton();
-        rbtDescCliente = new javax.swing.JRadioButton();
-        rbtDescProovedor = new javax.swing.JRadioButton();
-        rbtGastos = new javax.swing.JRadioButton();
-        rbtOtros = new javax.swing.JRadioButton();
         PanelConcepto = new javax.swing.JPanel();
         txtConcepto = new javax.swing.JTextField();
         PanelMonto = new javax.swing.JPanel();
@@ -110,10 +103,29 @@ public class RegistroDiario extends javax.swing.JFrame {
         cbDia = new javax.swing.JComboBox<>();
         cbMes = new javax.swing.JComboBox<>();
         cbAno = new javax.swing.JComboBox<>();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        PanelBalanceGeneralPadre = new javax.swing.JPanel();
+        PanelBalanceGeneral = new javax.swing.JPanel();
+        rbtCaja = new javax.swing.JRadioButton();
+        rbtBanco = new javax.swing.JRadioButton();
+        rbtMercancia = new javax.swing.JRadioButton();
+        rbtMobiliario = new javax.swing.JRadioButton();
+        rbtProovedores = new javax.swing.JRadioButton();
+        rbtDocsPorPagar = new javax.swing.JRadioButton();
+        rbtCapital = new javax.swing.JRadioButton();
+        rbtOtro = new javax.swing.JRadioButton();
+        PanelMovimientos = new javax.swing.JPanel();
+        rbtCompra = new javax.swing.JRadioButton();
+        rbtVenta = new javax.swing.JRadioButton();
+        rbtDevCliente = new javax.swing.JRadioButton();
+        rbtDevProovedor = new javax.swing.JRadioButton();
+        rbtDescCliente = new javax.swing.JRadioButton();
+        rbtDescProovedor = new javax.swing.JRadioButton();
+        rbtGastos = new javax.swing.JRadioButton();
+        rbtOtros = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         PanelOpcionesTabla = new javax.swing.JTabbedPane();
         PanelInicio = new javax.swing.JPanel();
-        btnSumasIguales = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         PanelOpciones = new javax.swing.JPanel();
         PanelCelda = new javax.swing.JPanel();
@@ -122,14 +134,16 @@ public class RegistroDiario extends javax.swing.JFrame {
         cbxTamanoLetra = new javax.swing.JComboBox<>();
         cbxColorLetra = new javax.swing.JComboBox<>();
         cbxColorFondo = new javax.swing.JComboBox<>();
-        PanelIzquierdo = new javax.swing.JScrollPane();
+        PanelDerecho = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
+        Tabla.getTableHeader().setFont(fuente.setFont(fuente.GoogleNegrita, 0, 20));
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/cartera.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro Diario");
+        setPreferredSize(new java.awt.Dimension(1500, 900));
 
         PanelInferior.setBackground(java.awt.Color.gray);
         PanelInferior.setPreferredSize(new java.awt.Dimension(1200, 100));
@@ -153,6 +167,11 @@ public class RegistroDiario extends javax.swing.JFrame {
         btnEsquemasDeMayor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEsquemasDeMayor.setPreferredSize(new java.awt.Dimension(220, 130));
         btnEsquemasDeMayor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEsquemasDeMayor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEsquemasDeMayorActionPerformed(evt);
+            }
+        });
         PanelInferior.add(btnEsquemasDeMayor);
 
         btnBalanzasDeComprobacion.setBackground(java.awt.Color.white);
@@ -262,165 +281,30 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         PanelCentral.setLayout(new java.awt.GridLayout(1, 2));
 
-        Panel.setLayout(new java.awt.BorderLayout());
+        PanelIzquierdo.setLayout(new java.awt.BorderLayout());
 
         PanelTitulo.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
-        PanelTitulo.setPreferredSize(new java.awt.Dimension(600, 60));
+        PanelTitulo.setPreferredSize(new java.awt.Dimension(700, 60));
         PanelTitulo.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(fuente.setFont(fuente.GoogleNegrita, 1, 30)
+        jLabel1.setFont(fuente.setFont(fuente.GoogleNegrita, 0, 30)
         );
-        jLabel1.setForeground(new java.awt.Color(59, 182, 96));
+        jLabel1.setForeground(java.awt.Color.gray);
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registro Diario");
-        jLabel1.setOpaque(true);
         PanelTitulo.add(jLabel1);
 
-        Panel.add(PanelTitulo, java.awt.BorderLayout.NORTH);
+        PanelIzquierdo.add(PanelTitulo, java.awt.BorderLayout.NORTH);
 
-        PanelAccionesPadre.setPreferredSize(new java.awt.Dimension(610, 950));
-        PanelAccionesPadre.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 20));
+        PanelAccionesPadre.setPreferredSize(new java.awt.Dimension(600, 950));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 20);
+        flowLayout1.setAlignOnBaseline(true);
+        PanelAccionesPadre.setLayout(flowLayout1);
 
         PanelAcciones.setBackground(java.awt.Color.white);
         PanelAcciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true));
-        PanelAcciones.setPreferredSize(new java.awt.Dimension(600, 940));
+        PanelAcciones.setPreferredSize(new java.awt.Dimension(600, 900));
         PanelAcciones.setLayout(null);
-
-        PanelMovimientos.setBackground(java.awt.Color.white);
-        PanelMovimientos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Movimientos:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
-        PanelMovimientos.setLayout(new java.awt.GridLayout(3, 3));
-
-        rbtCompra.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtCompra);
-        rbtCompra.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtCompra.setText("Compra");
-        rbtCompra.setHideActionText(true);
-        rbtCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtCompra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtCompra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtCompraActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtCompra);
-
-        rbtVenta.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtVenta);
-        rbtVenta.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtVenta.setText("Venta");
-        rbtVenta.setHideActionText(true);
-        rbtVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtVenta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtVenta.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtVentaActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtVenta);
-
-        rbtDevCliente.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtDevCliente);
-        rbtDevCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtDevCliente.setText("Devoucion del cliente");
-        rbtDevCliente.setHideActionText(true);
-        rbtDevCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtDevCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtDevCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtDevCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtDevClienteActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtDevCliente);
-
-        rbtDevProovedor.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtDevProovedor);
-        rbtDevProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtDevProovedor.setText("Devol. al proovedoor");
-        rbtDevProovedor.setHideActionText(true);
-        rbtDevProovedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtDevProovedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtDevProovedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtDevProovedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtDevProovedorActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtDevProovedor);
-
-        rbtDescCliente.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtDescCliente);
-        rbtDescCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtDescCliente.setText("Descuento al cliente");
-        rbtDescCliente.setHideActionText(true);
-        rbtDescCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtDescCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtDescCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtDescCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtDescClienteActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtDescCliente);
-
-        rbtDescProovedor.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtDescProovedor);
-        rbtDescProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtDescProovedor.setText("Desc. del proovedor");
-        rbtDescProovedor.setHideActionText(true);
-        rbtDescProovedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtDescProovedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtDescProovedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtDescProovedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtDescProovedorActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtDescProovedor);
-
-        rbtGastos.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtGastos);
-        rbtGastos.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtGastos.setText("Gastos");
-        rbtGastos.setHideActionText(true);
-        rbtGastos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtGastos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtGastos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtGastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtGastosActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtGastos);
-
-        rbtOtros.setBackground(java.awt.Color.white);
-        buttonGroup1.add(rbtOtros);
-        rbtOtros.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
-        );
-        rbtOtros.setText("Otro");
-        rbtOtros.setHideActionText(true);
-        rbtOtros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbtOtros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rbtOtros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        rbtOtros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtOtrosActionPerformed(evt);
-            }
-        });
-        PanelMovimientos.add(rbtOtros);
-
-        PanelAcciones.add(PanelMovimientos);
-        PanelMovimientos.setBounds(10, 20, 580, 250);
 
         PanelConcepto.setBackground(java.awt.Color.white);
         PanelConcepto.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Concepto:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
@@ -432,79 +316,288 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelConcepto.add(txtConcepto);
 
         PanelAcciones.add(PanelConcepto);
-        PanelConcepto.setBounds(10, 280, 580, 150);
+        PanelConcepto.setBounds(10, 270, 580, 150);
 
         PanelMonto.setBackground(java.awt.Color.white);
         PanelMonto.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Monto:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
+        PanelMonto.setPreferredSize(new java.awt.Dimension(20, 150));
         PanelMonto.setLayout(new java.awt.GridLayout(1, 0));
 
-        txtMonto.setBackground(java.awt.Color.white);
         txtMonto.setFont(new java.awt.Font("Google Sans", 0, 25)); // NOI18N
         txtMonto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtMonto.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtMonto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMontoFocusGained(evt);
+            }
+        });
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontoActionPerformed(evt);
+            }
+        });
         PanelMonto.add(txtMonto);
 
         PanelAcciones.add(PanelMonto);
-        PanelMonto.setBounds(10, 445, 580, 150);
+        PanelMonto.setBounds(10, 430, 580, 150);
 
         btnGuardar.setBackground(new java.awt.Color(232, 63, 96));
         btnGuardar.setFont(fuente.setFont(fuente.GoogleRegular, 0, 30));
         btnGuardar.setForeground(java.awt.Color.white);
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 3, true));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
         PanelAcciones.add(btnGuardar);
-        btnGuardar.setBounds(200, 820, 200, 80);
+        btnGuardar.setBounds(200, 790, 200, 80);
 
         cbxFecha.setBackground(java.awt.Color.white);
-        cbxFecha.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        cbxFecha.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
         cbxFecha.setSelected(true);
         cbxFecha.setText("Usar fecha actual");
         cbxFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cbxFecha.setOpaque(true);
         cbxFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxFechaActionPerformed(evt);
             }
         });
         PanelAcciones.add(cbxFecha);
-        cbxFecha.setBounds(150, 775, 300, 30);
+        cbxFecha.setBounds(150, 760, 300, 30);
 
         PanelFecha.setBackground(java.awt.Color.white);
         PanelFecha.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Fecha:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
+        PanelFecha.setPreferredSize(new java.awt.Dimension(488, 50));
         PanelFecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
-        cbDia.setBackground(java.awt.Color.white);
         cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbDia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Dia", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
         cbDia.setPreferredSize(new java.awt.Dimension(150, 80));
         PanelFecha.add(cbDia);
 
-        cbMes.setBackground(java.awt.Color.white);
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         cbMes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Mes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
         cbMes.setPreferredSize(new java.awt.Dimension(150, 80));
         PanelFecha.add(cbMes);
 
-        cbAno.setBackground(java.awt.Color.white);
         cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
         cbAno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Ano", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 15), new java.awt.Color(58, 173, 118))); // NOI18N
         cbAno.setPreferredSize(new java.awt.Dimension(150, 80));
         PanelFecha.add(cbAno);
 
         PanelAcciones.add(PanelFecha);
-        PanelFecha.setBounds(10, 610, 580, 150);
+        PanelFecha.setBounds(10, 590, 580, 150);
+
+        jTabbedPane1.setBackground(java.awt.Color.gray);
+        jTabbedPane1.setForeground(java.awt.Color.white);
+        jTabbedPane1.setFont(fuente.setFont(fuente.GoogleRegular, 0, 15)
+        );
+
+        PanelBalanceGeneralPadre.setBackground(java.awt.Color.white);
+        PanelBalanceGeneralPadre.setPreferredSize(new java.awt.Dimension(572, 320));
+
+        PanelBalanceGeneral.setBackground(java.awt.Color.white);
+        PanelBalanceGeneral.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Balance Inicial:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
+        PanelBalanceGeneral.setLayout(new java.awt.GridLayout(3, 3));
+
+        rbtCaja.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtCaja);
+        rbtCaja.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtCaja.setText("Caja");
+        rbtCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtCajaActionPerformed(evt);
+            }
+        });
+        PanelBalanceGeneral.add(rbtCaja);
+
+        rbtBanco.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtBanco);
+        rbtBanco.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtBanco.setText("Banco");
+        PanelBalanceGeneral.add(rbtBanco);
+
+        rbtMercancia.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtMercancia);
+        rbtMercancia.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtMercancia.setText("Mercancia");
+        PanelBalanceGeneral.add(rbtMercancia);
+
+        rbtMobiliario.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtMobiliario);
+        rbtMobiliario.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtMobiliario.setText("Mobiliario");
+        PanelBalanceGeneral.add(rbtMobiliario);
+
+        rbtProovedores.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtProovedores);
+        rbtProovedores.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtProovedores.setText("Proovedores");
+        PanelBalanceGeneral.add(rbtProovedores);
+
+        rbtDocsPorPagar.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtDocsPorPagar);
+        rbtDocsPorPagar.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtDocsPorPagar.setText("Docs. por pagar");
+        PanelBalanceGeneral.add(rbtDocsPorPagar);
+
+        rbtCapital.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtCapital);
+        rbtCapital.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtCapital.setText("Capital");
+        PanelBalanceGeneral.add(rbtCapital);
+
+        rbtOtro.setBackground(java.awt.Color.white);
+        buttonGroup2.add(rbtOtro);
+        rbtOtro.setFont(fuente.setFont(fuente.GoogleRegular, 0, 20)
+        );
+        rbtOtro.setText("Otros");
+        PanelBalanceGeneral.add(rbtOtro);
+
+        javax.swing.GroupLayout PanelBalanceGeneralPadreLayout = new javax.swing.GroupLayout(PanelBalanceGeneralPadre);
+        PanelBalanceGeneralPadre.setLayout(PanelBalanceGeneralPadreLayout);
+        PanelBalanceGeneralPadreLayout.setHorizontalGroup(
+            PanelBalanceGeneralPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelBalanceGeneral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        PanelBalanceGeneralPadreLayout.setVerticalGroup(
+            PanelBalanceGeneralPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelBalanceGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Balance General Inicial", PanelBalanceGeneralPadre);
+
+        PanelMovimientos.setBackground(java.awt.Color.white);
+        PanelMovimientos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(java.awt.Color.gray, 5, true), "Movimientos:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 30), java.awt.Color.red)); // NOI18N
+        PanelMovimientos.setPreferredSize(new java.awt.Dimension(474, 200));
+        PanelMovimientos.setLayout(new java.awt.GridLayout(3, 3));
+
+        rbtCompra.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtCompra);
+        rbtCompra.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtCompra.setText("Compra");
+        rbtCompra.setHideActionText(true);
+        rbtCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtCompraActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtCompra);
+
+        rbtVenta.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtVenta);
+        rbtVenta.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtVenta.setText("Venta");
+        rbtVenta.setHideActionText(true);
+        rbtVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtVentaActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtVenta);
+
+        rbtDevCliente.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtDevCliente);
+        rbtDevCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtDevCliente.setText("Devoucion del cliente");
+        rbtDevCliente.setHideActionText(true);
+        rbtDevCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtDevClienteActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtDevCliente);
+
+        rbtDevProovedor.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtDevProovedor);
+        rbtDevProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtDevProovedor.setText("Devol. al proovedoor");
+        rbtDevProovedor.setHideActionText(true);
+        rbtDevProovedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtDevProovedorActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtDevProovedor);
+
+        rbtDescCliente.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtDescCliente);
+        rbtDescCliente.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtDescCliente.setText("Descuento al cliente");
+        rbtDescCliente.setHideActionText(true);
+        rbtDescCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtDescClienteActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtDescCliente);
+
+        rbtDescProovedor.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtDescProovedor);
+        rbtDescProovedor.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtDescProovedor.setText("Desc. del proovedor");
+        rbtDescProovedor.setHideActionText(true);
+        rbtDescProovedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtDescProovedorActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtDescProovedor);
+
+        rbtGastos.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtGastos);
+        rbtGastos.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtGastos.setText("Gastos");
+        rbtGastos.setHideActionText(true);
+        rbtGastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtGastosActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtGastos);
+
+        rbtOtros.setBackground(java.awt.Color.white);
+        buttonGroup1.add(rbtOtros);
+        rbtOtros.setFont(fuente.setFont(fuente.GoogleRegular, 0, 16)
+        );
+        rbtOtros.setText("Otro");
+        rbtOtros.setHideActionText(true);
+        rbtOtros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtOtrosActionPerformed(evt);
+            }
+        });
+        PanelMovimientos.add(rbtOtros);
+
+        jTabbedPane1.addTab("Movimientos", null, PanelMovimientos, "");
+
+        PanelAcciones.add(jTabbedPane1);
+        jTabbedPane1.setBounds(10, 15, 580, 250);
 
         PanelAccionesPadre.add(PanelAcciones);
 
-        Panel.add(PanelAccionesPadre, java.awt.BorderLayout.CENTER);
+        ScrollIzquierdo.setViewportView(PanelAccionesPadre);
 
-        PanelDerecho.setViewportView(Panel);
+        PanelIzquierdo.add(ScrollIzquierdo, java.awt.BorderLayout.CENTER);
 
-        PanelCentral.add(PanelDerecho);
+        PanelCentral.add(PanelIzquierdo);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -519,18 +612,6 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         PanelInicio.setToolTipText("Opciones");
         PanelInicio.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 7));
-
-        btnSumasIguales.setBackground(java.awt.Color.gray);
-        btnSumasIguales.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        btnSumasIguales.setForeground(java.awt.Color.white);
-        btnSumasIguales.setText("Sumas Iguales");
-        btnSumasIguales.setPreferredSize(new java.awt.Dimension(135, 60));
-        btnSumasIguales.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnSumasIgualesMousePressed(evt);
-            }
-        });
-        PanelInicio.add(btnSumasIguales);
 
         jButton2.setBackground(java.awt.Color.gray);
         jButton2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
@@ -550,7 +631,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpciones.setLayout(PanelOpcionesLayout);
         PanelOpcionesLayout.setHorizontalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         PanelOpcionesLayout.setVerticalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,7 +642,6 @@ public class RegistroDiario extends javax.swing.JFrame {
 
         btnNegrita.setBackground(java.awt.Color.white);
         btnNegrita.setFont(new java.awt.Font("Google Sans", 1, 20)); // NOI18N
-        btnNegrita.setForeground(java.awt.Color.black);
         btnNegrita.setText("N");
         btnNegrita.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "Negrita", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Google Sans", 0, 14), new java.awt.Color(89, 177, 108))); // NOI18N
         btnNegrita.setPreferredSize(new java.awt.Dimension(80, 60));
@@ -651,9 +731,10 @@ public class RegistroDiario extends javax.swing.JFrame {
                 TablaKeyPressed(evt);
             }
         });
-        PanelIzquierdo.setViewportView(Tabla);
+        PanelDerecho.setViewportView(Tabla);
+        Tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jPanel1.add(PanelIzquierdo, java.awt.BorderLayout.CENTER);
+        jPanel1.add(PanelDerecho, java.awt.BorderLayout.CENTER);
 
         PanelCentral.add(jPanel1);
 
@@ -663,7 +744,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1400, Short.MAX_VALUE)
+            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,6 +765,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnNuevoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoRegistroActionPerformed
+
         PanelAccionesPadre.remove(logo);
         PanelAccionesPadre.setLayout(new FlowLayout());
         PanelAccionesPadre.add(PanelAcciones);
@@ -700,150 +782,6 @@ public class RegistroDiario extends javax.swing.JFrame {
         btnNuevoRegistro.setEnabled(true);
         btnCancelarRegistro.setEnabled(false);
     }//GEN-LAST:event_btnCancelarRegistroActionPerformed
-
-    @SuppressWarnings("empty-statement")
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-        //fecha
-        String fecha;
-
-        //Comprovar que se selecciono un radioButton
-        if (rbtCompra.isSelected() || rbtVenta.isSelected() || rbtDescCliente.isSelected() || rbtDescProovedor.isSelected() || rbtDevCliente.isSelected()
-                || rbtDevProovedor.isSelected() || rbtGastos.isSelected() || rbtOtros.isSelected()) {
-            //EstablecerFecha
-            if (cbxFecha.isSelected()) {
-                fecha = String.valueOf(calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
-            } else {
-                fecha = cbDia.getSelectedItem().toString() + "/" + cbMes.getSelectedItem().toString() + "/" + cbAno.getSelectedItem().toString();
-            }
-
-            //Caso compra ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtCompra.isSelected()) {
-                llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "Proovedor", "Venta de mercancia", "0", txtMonto.getText());
-            }
-
-            //Caso venta ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtVenta.isSelected()) {
-                llenarFila1(fecha, "Cliente", "Compra de Mercancia", txtMonto.getText(), "0");
-                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //Caso devolucion del cliente ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDevCliente.isSelected()) {
-                llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //Caso devolucion al proovedor ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDevProovedor.isSelected()) {
-                llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //Caso descuento al cliente ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDescCliente.isSelected()) {
-                llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //Caso descuento del proovedor ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDescCliente.isSelected()) {
-                llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //caso Gastos ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDescCliente.isSelected()) {
-                llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "Proovedor", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            //Otro caso ---------------------------------------------------------------------------------------------------------------------------------
-            if (rbtDescCliente.isSelected()) {
-                llenarFila1(fecha, "", txtConcepto.getText(), txtMonto.getText(), "0");
-                llenarFila2(fecha, "", txtConcepto.getText(), "0", txtMonto.getText());
-            }
-
-            modelo.addRow(datosFila1);
-            modelo.addRow(datosFila2);
-            Tabla.setModel(modelo);
-            txtConcepto.setText("");
-            txtMonto.setText("");
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una opcion en el panel de movimientos");
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void cbxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFechaActionPerformed
-        if (cbxFecha.isSelected()) {
-            PanelAcciones.remove(PanelFecha);
-            cbxFecha.setLocation(150, 610);
-            btnGuardar.setLocation(200, 655);
-            PanelAcciones.setPreferredSize(new Dimension(600, 770));
-            PanelAccionesPadre.setPreferredSize(new Dimension(600, 780));
-            PanelAcciones.updateUI();
-            PanelAccionesPadre.updateUI();
-        } else {
-            PanelAccionesPadre.setPreferredSize(new Dimension(600, 950));
-            PanelAcciones.setPreferredSize(new Dimension(600, 940));
-            PanelAcciones.add(PanelFecha);
-            PanelFecha.setLocation(10, 610);
-            cbxFecha.setLocation(150, 775);
-            btnGuardar.setLocation(200, 820);
-            PanelAccionesPadre.updateUI();
-            PanelAcciones.updateUI();
-        }
-    }//GEN-LAST:event_cbxFechaActionPerformed
-
-    private void rbtCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCompraActionPerformed
-        if (rbtCompra.isSelected()) {
-            txtConcepto.setText("Compra de mercancia");
-        }
-    }//GEN-LAST:event_rbtCompraActionPerformed
-
-    private void rbtVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtVentaActionPerformed
-        if (rbtVenta.isSelected()) {
-            txtConcepto.setText("Venta de mercancia");
-        }
-    }//GEN-LAST:event_rbtVentaActionPerformed
-
-    private void rbtDevClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDevClienteActionPerformed
-        if (rbtDevCliente.isSelected()) {
-            txtConcepto.setText("Devolucion de mercancia");
-        }
-    }//GEN-LAST:event_rbtDevClienteActionPerformed
-
-    private void rbtDevProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDevProovedorActionPerformed
-        if (rbtDevProovedor.isSelected()) {
-            txtConcepto.setText("Devolucion de mercancia");
-        }
-    }//GEN-LAST:event_rbtDevProovedorActionPerformed
-
-    private void rbtDescClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescClienteActionPerformed
-        if (rbtDescCliente.isSelected()) {
-            txtConcepto.setText("Descuento por compra de mercancia");
-        }
-    }//GEN-LAST:event_rbtDescClienteActionPerformed
-
-    private void rbtDescProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescProovedorActionPerformed
-        if (rbtDescProovedor.isSelected()) {
-            txtConcepto.setText("Descuento por compra de mercancia");
-        }
-    }//GEN-LAST:event_rbtDescProovedorActionPerformed
-
-    private void rbtGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtGastosActionPerformed
-        if (rbtGastos.isSelected()) {
-            txtConcepto.setText("");
-        }
-    }//GEN-LAST:event_rbtGastosActionPerformed
-
-    private void rbtOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOtrosActionPerformed
-        if (rbtOtros.isSelected()) {
-            txtConcepto.setText("");
-        }
-    }//GEN-LAST:event_rbtOtrosActionPerformed
 
     private void btnNegritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegritaActionPerformed
         if (btnNegrita.isSelected()) {
@@ -871,10 +809,6 @@ public class RegistroDiario extends javax.swing.JFrame {
     private void btnNegritaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNegritaMousePressed
 
     }//GEN-LAST:event_btnNegritaMousePressed
-
-    private void btnSumasIgualesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSumasIgualesMousePressed
-
-    }//GEN-LAST:event_btnSumasIgualesMousePressed
 
     private void TablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TablaKeyPressed
 
@@ -962,7 +896,7 @@ public class RegistroDiario extends javax.swing.JFrame {
                     Tabla.setFont(fuente.setFont(fuente.GoogleRegular, 0, fuente.getTamano()));
                 }
                 break;
-                
+
             case "Arial":
                 if (btnNegrita.isSelected()) {
                     Tabla.setFont(fuente.setFont(fuente.Arial, 1, fuente.getTamano()));
@@ -970,7 +904,7 @@ public class RegistroDiario extends javax.swing.JFrame {
                     Tabla.setFont(fuente.setFont(fuente.Arial, 0, fuente.getTamano()));
                 }
                 break;
-                
+
             case "Calibri":
                 if (btnNegrita.isSelected()) {
                     Tabla.setFont(fuente.setFont(fuente.Calibri, 1, fuente.getTamano()));
@@ -978,7 +912,7 @@ public class RegistroDiario extends javax.swing.JFrame {
                     Tabla.setFont(fuente.setFont(fuente.Calibri, 0, fuente.getTamano()));
                 }
                 break;
-                
+
             case "Lato":
                 if (btnNegrita.isSelected()) {
                     Tabla.setFont(fuente.setFont(fuente.Lato, 1, fuente.getTamano()));
@@ -986,14 +920,14 @@ public class RegistroDiario extends javax.swing.JFrame {
                     Tabla.setFont(fuente.setFont(fuente.Lato, 0, fuente.getTamano()));
                 }
                 break;
-        
+
             case "Stencil":
                 if (btnNegrita.isSelected()) {
                     Tabla.setFont(fuente.setFont(fuente.Stencil, 1, fuente.getTamano()));
                 } else {
                     Tabla.setFont(fuente.setFont(fuente.Stencil, 0, fuente.getTamano()));
                 }
-                break;    
+                break;
         }
 
     }//GEN-LAST:event_cbxTipoLetraActionPerformed
@@ -1002,14 +936,14 @@ public class RegistroDiario extends javax.swing.JFrame {
         try {
 
             String sucursalesCSVFile = "src/archivos/DatosTabla.txt";
-            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile ));
+            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile));
 
-            for (int i = 0 ; i < Tabla.getRowCount(); i++) //realiza un barrido por filas.
+            for (int i = 0; i < Tabla.getRowCount(); i++) //realiza un barrido por filas.
             {
-                for(int j = 0 ; j < Tabla.getColumnCount();j++) //realiza un barrido por columnas.
+                for (int j = 0; j < Tabla.getColumnCount(); j++) //realiza un barrido por columnas.
                 {
-                    bfw.write((String)(Tabla.getValueAt(i,j)));
-                    if (j < Tabla.getColumnCount() -1) { //agrega separador "," si no es el ultimo elemento de la fila.
+                    bfw.write((String) (Tabla.getValueAt(i, j)));
+                    if (j < Tabla.getColumnCount() - 1) { //agrega separador "," si no es el ultimo elemento de la fila.
                         bfw.write(",");
                     }
                 }
@@ -1021,7 +955,196 @@ public class RegistroDiario extends javax.swing.JFrame {
         } catch (IOException e) {
             System.out.println("ERROR: Ocurrio un problema al salvar el archivo!" + e.getMessage());
         }
+        String [] cuentas = new String[Tabla.getRowCount()];
+        for(int i=0 ; i<Tabla.getRowCount() ; i++){ // Recorro todas las filas de la tablita y guardo los datos en los arrays
+            cuentas[i] = Tabla.getValueAt(i, 1).toString();
+                
+            }
+        
+        ventana.recibirDatos(cuentas);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        //fecha
+        String fecha;
+
+        //Comprovar que se selecciono un radioButton
+        if (rbtCompra.isSelected() || rbtVenta.isSelected() || rbtDescCliente.isSelected() || rbtDescProovedor.isSelected() || rbtDevCliente.isSelected()
+                || rbtDevProovedor.isSelected() || rbtGastos.isSelected() || rbtOtros.isSelected() || rbtCaja.isSelected()) {
+            //EstablecerFecha
+            if (cbxFecha.isSelected()) {
+                fecha = String.valueOf(calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+            } else {
+                fecha = cbDia.getSelectedItem().toString() + "/" + cbMes.getSelectedItem().toString() + "/" + cbAno.getSelectedItem().toString();
+            }
+
+            if (jTabbedPane1.getSelectedIndex() == 1) {
+                //Caso compra ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtCompra.isSelected()) {
+                    llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Proovedor", "Venta de mercancia", "0", txtMonto.getText());
+                }
+
+                //Caso venta ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtVenta.isSelected()) {
+                    llenarFila1(fecha, "Cliente", "Compra de Mercancia", txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //Caso devolucion del cliente ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDevCliente.isSelected()) {
+                    llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //Caso devolucion al proovedor ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDevProovedor.isSelected()) {
+                    llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //Caso descuento al cliente ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDescCliente.isSelected()) {
+                    llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "cliente", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //Caso descuento del proovedor ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDescCliente.isSelected()) {
+                    llenarFila1(fecha, "Proovedor", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Mercancias", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //caso Gastos ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDescCliente.isSelected()) {
+                    llenarFila1(fecha, "Caja / Banco", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Proovedor", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                //Otro caso ---------------------------------------------------------------------------------------------------------------------------------
+                if (rbtDescCliente.isSelected()) {
+                    llenarFila1(fecha, "Mercancias", txtConcepto.getText(), txtMonto.getText(), "0");
+                    llenarFila2(fecha, "Clientes", txtConcepto.getText(), "0", txtMonto.getText());
+                }
+
+                modelo.addRow(datosFila1);
+                modelo.addRow(datosFila2);
+                Tabla.setModel(modelo);
+
+                //***************************************************************************************************************************************
+            } else if(jTabbedPane1.getSelectedIndex()==0){
+                if(rbtCaja.isSelected()){
+                    llenarFila1(fecha, "Caja", txtConcepto.getText(), txtMonto.getText(), "0");
+                }
+                
+                modelo.addRow(datosFila1);
+                Tabla.setModel(modelo);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una opcion en el panel de movimientos");
+        }
+
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cbxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFechaActionPerformed
+        if (cbxFecha.isSelected()) {
+            PanelAcciones.remove(PanelFecha);
+            cbxFecha.setLocation(150, 640);
+            btnGuardar.setLocation(200, 670);
+            PanelAcciones.setPreferredSize(new Dimension(600, 770));
+            PanelAccionesPadre.setPreferredSize(new Dimension(600, 780));
+            PanelAcciones.updateUI();
+            PanelAccionesPadre.updateUI();
+        } else {
+            PanelAccionesPadre.setPreferredSize(new Dimension(600, 930));
+            PanelAcciones.setPreferredSize(new Dimension(600, 900));
+            PanelAcciones.add(PanelFecha);
+            PanelFecha.setLocation(10, 590);
+            cbxFecha.setLocation(150, 760);
+            btnGuardar.setLocation(200, 790);
+            PanelAccionesPadre.updateUI();
+            PanelAcciones.updateUI();
+        }
+    }//GEN-LAST:event_cbxFechaActionPerformed
+
+    private void txtMontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusGained
+        txtMonto.setText("");
+    }//GEN-LAST:event_txtMontoFocusGained
+
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontoActionPerformed
+
+    private void rbtOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtOtrosActionPerformed
+        if (rbtOtros.isSelected()) {
+            txtConcepto.setText("");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtOtrosActionPerformed
+
+    private void rbtGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtGastosActionPerformed
+        if (rbtGastos.isSelected()) {
+            txtConcepto.setText("");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtGastosActionPerformed
+
+    private void rbtDescProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescProovedorActionPerformed
+        if (rbtDescProovedor.isSelected()) {
+            txtConcepto.setText("Descuento por compra de mercancia");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtDescProovedorActionPerformed
+
+    private void rbtDescClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDescClienteActionPerformed
+        if (rbtDescCliente.isSelected()) {
+            txtConcepto.setText("Descuento por compra de mercancia");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtDescClienteActionPerformed
+
+    private void rbtDevProovedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDevProovedorActionPerformed
+        if (rbtDevProovedor.isSelected()) {
+            txtConcepto.setText("Devolucion de mercancia");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtDevProovedorActionPerformed
+
+    private void rbtDevClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDevClienteActionPerformed
+        if (rbtDevCliente.isSelected()) {
+            txtConcepto.setText("Devolucion de mercancia");
+            txtMonto.setText("0");
+
+        }
+    }//GEN-LAST:event_rbtDevClienteActionPerformed
+
+    private void rbtVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtVentaActionPerformed
+
+        txtConcepto.setText("Venta de mercancia");
+        txtMonto.setText("0");
+    }//GEN-LAST:event_rbtVentaActionPerformed
+
+    private void rbtCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCompraActionPerformed
+
+        txtConcepto.setText("Compra de mercancia");
+        txtMonto.setText("0");
+    }//GEN-LAST:event_rbtCompraActionPerformed
+
+    private void rbtCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCajaActionPerformed
+        
+    }//GEN-LAST:event_rbtCajaActionPerformed
+
+    private void btnEsquemasDeMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsquemasDeMayorActionPerformed
+
+     ventana.setVisible(true);
+    }//GEN-LAST:event_btnEsquemasDeMayorActionPerformed
 
     public static void main(String args[]) {
 
@@ -1034,9 +1157,10 @@ public class RegistroDiario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar BarraDeHerramientas;
-    private javax.swing.JPanel Panel;
     private javax.swing.JPanel PanelAcciones;
     private javax.swing.JPanel PanelAccionesPadre;
+    private javax.swing.JPanel PanelBalanceGeneral;
+    private javax.swing.JPanel PanelBalanceGeneralPadre;
     private javax.swing.JPanel PanelCelda;
     private javax.swing.JPanel PanelCentral;
     private javax.swing.JPanel PanelConcepto;
@@ -1044,12 +1168,13 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelFecha;
     private javax.swing.JPanel PanelInferior;
     private javax.swing.JPanel PanelInicio;
-    private javax.swing.JScrollPane PanelIzquierdo;
+    private javax.swing.JPanel PanelIzquierdo;
     private javax.swing.JPanel PanelMonto;
     private javax.swing.JPanel PanelMovimientos;
     private javax.swing.JPanel PanelOpciones;
     private javax.swing.JTabbedPane PanelOpcionesTabla;
     private javax.swing.JPanel PanelTitulo;
+    private javax.swing.JScrollPane ScrollIzquierdo;
     public static javax.swing.JTable Tabla;
     private javax.swing.JButton btnAjustes;
     private javax.swing.JButton btnBalanceGeneral;
@@ -1064,8 +1189,9 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevoRegistro;
     private javax.swing.JButton btnRegistroDiario;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSumasIguales;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbAno;
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
@@ -1077,14 +1203,23 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel logo;
+    private javax.swing.JRadioButton rbtBanco;
+    private javax.swing.JRadioButton rbtCaja;
+    private javax.swing.JRadioButton rbtCapital;
     private javax.swing.JRadioButton rbtCompra;
     private javax.swing.JRadioButton rbtDescCliente;
     private javax.swing.JRadioButton rbtDescProovedor;
     private javax.swing.JRadioButton rbtDevCliente;
     private javax.swing.JRadioButton rbtDevProovedor;
+    private javax.swing.JRadioButton rbtDocsPorPagar;
     private javax.swing.JRadioButton rbtGastos;
+    private javax.swing.JRadioButton rbtMercancia;
+    private javax.swing.JRadioButton rbtMobiliario;
+    private javax.swing.JRadioButton rbtOtro;
     private javax.swing.JRadioButton rbtOtros;
+    private javax.swing.JRadioButton rbtProovedores;
     private javax.swing.JRadioButton rbtVenta;
     private javax.swing.JTextField txtConcepto;
     private javax.swing.JTextField txtMonto;
@@ -1105,5 +1240,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         datosFila2[3] = cargo;
         datosFila2[4] = abono;
     }
+
+   
 
 }
