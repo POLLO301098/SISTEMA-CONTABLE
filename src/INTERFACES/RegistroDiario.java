@@ -1,15 +1,11 @@
 package INTERFACES;
 
 import FUENTES.cargarFuente;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
@@ -35,6 +31,8 @@ public class RegistroDiario extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/IMAGENES/cartera.png")));
         setTitle("Registro Diario");
 
+        
+        
         //darle forma a la fila de titulos
         modelo.setColumnIdentifiers(titulos);
         Tabla.setModel(modelo);
@@ -126,7 +124,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         PanelOpcionesTabla = new javax.swing.JTabbedPane();
         PanelInicio = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnGuardarDatosTabla = new javax.swing.JButton();
         PanelOpciones = new javax.swing.JPanel();
         PanelCelda = new javax.swing.JPanel();
         btnNegrita = new javax.swing.JToggleButton();
@@ -613,17 +611,17 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelInicio.setToolTipText("Opciones");
         PanelInicio.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 7));
 
-        jButton2.setBackground(java.awt.Color.gray);
-        jButton2.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
-        jButton2.setForeground(java.awt.Color.white);
-        jButton2.setText("Guardar");
-        jButton2.setPreferredSize(new java.awt.Dimension(120, 60));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarDatosTabla.setBackground(java.awt.Color.gray);
+        btnGuardarDatosTabla.setFont(new java.awt.Font("Google Sans", 0, 15)); // NOI18N
+        btnGuardarDatosTabla.setForeground(java.awt.Color.white);
+        btnGuardarDatosTabla.setText("Guardar");
+        btnGuardarDatosTabla.setPreferredSize(new java.awt.Dimension(120, 60));
+        btnGuardarDatosTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGuardarDatosTablaActionPerformed(evt);
             }
         });
-        PanelInicio.add(jButton2);
+        PanelInicio.add(btnGuardarDatosTabla);
 
         PanelOpcionesTabla.addTab("Inicio", PanelInicio);
 
@@ -631,7 +629,7 @@ public class RegistroDiario extends javax.swing.JFrame {
         PanelOpciones.setLayout(PanelOpcionesLayout);
         PanelOpcionesLayout.setHorizontalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 745, Short.MAX_VALUE)
+            .addGap(0, 696, Short.MAX_VALUE)
         );
         PanelOpcionesLayout.setVerticalGroup(
             PanelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -744,7 +742,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelInferior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BarraDeHerramientas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1402, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -932,37 +930,23 @@ public class RegistroDiario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbxTipoLetraActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
+    private void btnGuardarDatosTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosTablaActionPerformed
 
-            String sucursalesCSVFile = "src/archivos/DatosTabla.txt";
-            BufferedWriter bfw = new BufferedWriter(new FileWriter(sucursalesCSVFile));
-
-            for (int i = 0; i < Tabla.getRowCount(); i++) //realiza un barrido por filas.
-            {
-                for (int j = 0; j < Tabla.getColumnCount(); j++) //realiza un barrido por columnas.
-                {
-                    bfw.write((String) (Tabla.getValueAt(i, j)));
-                    if (j < Tabla.getColumnCount() - 1) { //agrega separador "," si no es el ultimo elemento de la fila.
-                        bfw.write(",");
-                    }
-                }
-                bfw.newLine(); //inserta nueva linea.
-            }
-
-            bfw.close(); //cierra archivo!
-            System.out.println("El archivo fue salvado correctamente!");
-        } catch (IOException e) {
-            System.out.println("ERROR: Ocurrio un problema al salvar el archivo!" + e.getMessage());
-        }
-        String [] cuentas = new String[Tabla.getRowCount()];
-        for(int i=0 ; i<Tabla.getRowCount() ; i++){ // Recorro todas las filas de la tablita y guardo los datos en los arrays
+        String[] cuentas = new String[Tabla.getRowCount()];             // Arreglo con el ancho dependiendo de las filas de la tabla
+        String[] cargo = new String[Tabla.getRowCount()];               // Arreglo con el ancho dependiendo de las filas de la tabla
+        String[] abono = new String[Tabla.getRowCount()];               // Arreglo con el ancho dependiendo de las filas de la tabla
+        
+        for (int i = 0; i < Tabla.getRowCount(); i++) {                 // Recorro todas las filas de la tablita y guardo los datos en los arrays
             cuentas[i] = Tabla.getValueAt(i, 1).toString();
-                
-            }
-        ventana.setVisible(true);
-        ventana.recibirDatos(cuentas);
-    }//GEN-LAST:event_jButton2ActionPerformed
+            cargo[i] = Tabla.getValueAt(i, 3).toString();
+            abono[i] = Tabla.getValueAt(i, 4).toString();
+        }
+
+        ventana.recibirDatos(cuentas,cargo,abono);
+        JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+        
+
+    }//GEN-LAST:event_btnGuardarDatosTablaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
@@ -1033,13 +1017,14 @@ public class RegistroDiario extends javax.swing.JFrame {
                 Tabla.setModel(modelo);
 
                 //***************************************************************************************************************************************
-            } else if(jTabbedPane1.getSelectedIndex()==0){
-                if(rbtCaja.isSelected()){
+            } else if (jTabbedPane1.getSelectedIndex() == 0) {
+                if (rbtCaja.isSelected()) {
                     llenarFila1(fecha, "Caja", txtConcepto.getText(), txtMonto.getText(), "0");
                 }
-                
+
                 modelo.addRow(datosFila1);
                 Tabla.setModel(modelo);
+                btnGuardarDatosTabla.setEnabled(true);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una opcion en el panel de movimientos");
@@ -1138,12 +1123,11 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtCompraActionPerformed
 
     private void rbtCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCajaActionPerformed
-        
+
     }//GEN-LAST:event_rbtCajaActionPerformed
 
     private void btnEsquemasDeMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsquemasDeMayorActionPerformed
-
-     ventana.setVisible(true);
+       ventana.setVisible(true);
     }//GEN-LAST:event_btnEsquemasDeMayorActionPerformed
 
     public static void main(String args[]) {
@@ -1185,6 +1169,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JButton btnEsquemasDeMayor;
     private javax.swing.JButton btnEstadoDeResultados;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarDatosTabla;
     private javax.swing.JToggleButton btnNegrita;
     private javax.swing.JButton btnNuevoRegistro;
     private javax.swing.JButton btnRegistroDiario;
@@ -1200,7 +1185,6 @@ public class RegistroDiario extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbxFecha;
     private javax.swing.JComboBox<String> cbxTamanoLetra;
     private javax.swing.JComboBox<String> cbxTipoLetra;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1240,7 +1224,5 @@ public class RegistroDiario extends javax.swing.JFrame {
         datosFila2[3] = cargo;
         datosFila2[4] = abono;
     }
-
-   
 
 }

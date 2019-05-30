@@ -1,2 +1,2 @@
-29/5/2019,Caja / Banco,Compra de mercancia,0,0
-29/5/2019,Proovedor,Venta de mercancia,0,0
+30/5/2019,Caja / Banco,Compra de mercancia,0,0
+30/5/2019,Proovedor,Venta de mercancia,0,0
