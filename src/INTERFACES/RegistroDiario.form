@@ -798,9 +798,6 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                                         </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
-                                        </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
                                         </Property>
@@ -818,9 +815,6 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                                         </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
-                                        </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
                                         </Property>
@@ -834,9 +828,6 @@
                                       <Properties>
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
-                                        </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
                                         </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
@@ -852,9 +843,6 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                                         </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
-                                        </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
                                         </Property>
@@ -868,9 +856,6 @@
                                       <Properties>
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
-                                        </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
                                         </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
@@ -886,9 +871,6 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                                         </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
-                                        </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
                                         </Property>
@@ -903,9 +885,6 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
                                         </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
-                                        </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>
                                         </Property>
@@ -919,9 +898,6 @@
                                       <Properties>
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
-                                        </Property>
-                                        <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                          <ComponentRef name="default"/>
                                         </Property>
                                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                           <ComponentRef name="buttonGroup2"/>

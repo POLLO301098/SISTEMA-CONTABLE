@@ -960,7 +960,7 @@ public class RegistroDiario extends javax.swing.JFrame {
             cuentas[i] = Tabla.getValueAt(i, 1).toString();
                 
             }
-        
+        ventana.setVisible(true);
         ventana.recibirDatos(cuentas);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -16,6 +16,7 @@ public class CuentasT extends javax.swing.JFrame {
 
     DefaultTableModel modeloCajaBanco = new DefaultTableModel();
     String[] cuentasTabla1 = new String[1];
+    String[] titulos = {"Cargo","Abono"};
     
     public CuentasT() {
         initComponents();
@@ -523,7 +524,9 @@ public class CuentasT extends javax.swing.JFrame {
         switch(cuenta[0]){
             case "Caja / Banco":
                 cuentasTabla1[0] = cuenta[0];
+                modeloCajaBanco.setColumnIdentifiers(titulos);
                 modeloCajaBanco.addRow(cuentasTabla1);
+                
                 TablaCajaBanco.setModel(modeloCajaBanco);
         }
                 
