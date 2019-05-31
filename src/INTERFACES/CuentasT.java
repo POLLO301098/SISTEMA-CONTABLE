@@ -9,12 +9,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class CuentasT extends javax.swing.JFrame {
-
-    int cantidad;
+    int z = 0;
     cargarFuente fuente = new cargarFuente();
     DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     String[] titulos = {"Cargo", "Abono"};
-    int z = 0;
+    
 
     ////////////////////////////////
     DefaultTableModel modeloCajaBanco = new DefaultTableModel();
@@ -29,12 +28,10 @@ public class CuentasT extends javax.swing.JFrame {
     DefaultTableModel modeloGastos = new DefaultTableModel();
     DefaultTableModel modeloPerdidasGanancias = new DefaultTableModel();
     DefaultTableModel modeloOtros = new DefaultTableModel();
-    
 
     ///////////////////////////////
     String[] DatosTablas = new String[2];
     String[] DatosTablas2 = new String[2];
-    
 
     public CuentasT() {
         initComponents();
@@ -42,6 +39,8 @@ public class CuentasT extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         modeloCajaBanco.setColumnIdentifiers(titulos);
         modeloProovedores.setColumnIdentifiers(titulos);
+        modeloClientes.setColumnIdentifiers(titulos);
+        modeloMercancia.setColumnIdentifiers(titulos);
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
 
     }
@@ -500,34 +499,43 @@ public class CuentasT extends javax.swing.JFrame {
     }
 
     public void recibirDatos(String[] cuenta, String[] cargo, String[] abono) {
+
+        //x = filas z = columnas
         
         for (int x = 0; x < cuenta.length; x++) {
             switch (cuenta[x]) {
                 case "Caja / Banco": // compra de mercancia
-                    if (!cargo[x].equals("0")) {
-                        DatosTablas[0] = cargo[z];
-                        DatosTablas[1] = "0";
-                        DatosTablas2[0] = "0";
-                        DatosTablas2[1] = abono[(z)+1];
-                        modeloCajaBanco.addRow(DatosTablas);
-                        modeloProovedores.addRow(DatosTablas2);
-                        TablaCajaBanco.setModel(modeloCajaBanco);
-                        TablaProovedores.setModel(modeloProovedores);
-                        z=z+2;
-                    }
+
+                    DatosTablas[0] = cargo[z];
+                    DatosTablas[1] = "0";
+                    DatosTablas2[0] = "0";
+                    DatosTablas2[1] = abono[(z)+1];
+                    modeloCajaBanco.addRow(DatosTablas);
+                    modeloProovedores.addRow(DatosTablas2);
+                    TablaCajaBanco.setModel(modeloCajaBanco);
+                    TablaProovedores.setModel(modeloProovedores);
+                    z = z + 2;
 
                     break;
-                
+
                 case "Cliente":  //venta de mercancia
                     
-                    if (!cargo[x].equals("0")) {
-                        
-                          
-                    }
-            }
-            x=x+1;
-        }
+                    DatosTablas[0] = cargo[z];
+                    DatosTablas[1] = "0";
+                    DatosTablas2[0] = "0";
+                    DatosTablas2[1] = abono[(z) + 1];
+                    modeloClientes.addRow(DatosTablas);
+                    modeloMercancia.addRow(DatosTablas2);
+                    TablaClientes.setModel(modeloClientes);
+                    TablaMercancia.setModel(modeloMercancia);
+                    z = z + 2;
+                    
+                    break;
 
+            }
+            x = x + 1;
+        }
+        centrardatosTablas();
     }
 
 
@@ -581,5 +589,23 @@ public class CuentasT extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     // End of variables declaration//GEN-END:variables
+
+    private void centrardatosTablas() {
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 2; i++) {
+
+            TablaCajaBanco.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaDescuentoAlCliente.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaDescuentoDelProovedor.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaDevolucionAlProovedor.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaDevolucionDelCliente.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaGastos.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaInventario.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaMercancia.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaPerdidasGanancias.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaOtros.getColumnModel().getColumn(i).setCellRenderer(tcr);
+            TablaProovedores.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+    }
 
 }

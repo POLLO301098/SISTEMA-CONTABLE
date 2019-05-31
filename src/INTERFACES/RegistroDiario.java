@@ -23,6 +23,11 @@ public class RegistroDiario extends javax.swing.JFrame {
     String[] datosFila1 = new String[5];
     String[] datosFila2 = new String[5];
     CuentasT ventana = new CuentasT();
+    
+    String[] cuentas;
+    String[] cargo;
+    String[] abono;
+
 
     public RegistroDiario() {
         initComponents();
@@ -31,8 +36,6 @@ public class RegistroDiario extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/IMAGENES/cartera.png")));
         setTitle("Registro Diario");
 
-        
-        
         //darle forma a la fila de titulos
         modelo.setColumnIdentifiers(titulos);
         Tabla.setModel(modelo);
@@ -932,19 +935,29 @@ public class RegistroDiario extends javax.swing.JFrame {
 
     private void btnGuardarDatosTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDatosTablaActionPerformed
 
-        String[] cuentas = new String[Tabla.getRowCount()];             // Arreglo con el ancho dependiendo de las filas de la tabla
-        String[] cargo = new String[Tabla.getRowCount()];               // Arreglo con el ancho dependiendo de las filas de la tabla
-        String[] abono = new String[Tabla.getRowCount()];               // Arreglo con el ancho dependiendo de las filas de la tabla
+        int opc = JOptionPane.showConfirmDialog(null, "Esta seguro de que quiere Guardar los datos?"
+                + " una vez guardados ya no podra modificarlos hasta que "
+                + "inicie un nuevo registro diario", "Confirmar",JOptionPane.YES_NO_OPTION);
+        if (opc==0){
+        cuentas = new String[Tabla.getRowCount()];
+        cargo = new String[Tabla.getRowCount()];
+        abono = new String[Tabla.getRowCount()];
         
-        for (int i = 0; i < Tabla.getRowCount(); i++) {                 // Recorro todas las filas de la tablita y guardo los datos en los arrays
+        for (int i = 0; i < Tabla.getRowCount(); i++) {                 
             cuentas[i] = Tabla.getValueAt(i, 1).toString();
             cargo[i] = Tabla.getValueAt(i, 3).toString();
             abono[i] = Tabla.getValueAt(i, 4).toString();
         }
 
-        ventana.recibirDatos(cuentas,cargo,abono);
-        JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
         
+        
+        ventana.recibirDatos(cuentas, cargo, abono);
+        JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+        }
+        
+        if(opc==1){
+            JOptionPane.showMessageDialog(null, "Cancelado");
+        }
 
     }//GEN-LAST:event_btnGuardarDatosTablaActionPerformed
 
@@ -1127,7 +1140,7 @@ public class RegistroDiario extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtCajaActionPerformed
 
     private void btnEsquemasDeMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsquemasDeMayorActionPerformed
-       ventana.setVisible(true);
+        ventana.setVisible(true);
     }//GEN-LAST:event_btnEsquemasDeMayorActionPerformed
 
     public static void main(String args[]) {
